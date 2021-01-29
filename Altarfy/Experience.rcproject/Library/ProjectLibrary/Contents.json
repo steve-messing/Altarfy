@@ -1,0 +1,22 @@
+[
+  {
+    "libraryIdentifier" : "ac0115f65ac71e7ca6c36f57b4a8bc9e",
+    "format" : "model",
+    "displayName" : "Altar.usdz"
+  },
+  {
+    "libraryIdentifier" : "0266ecde3f9cf949ac5699d510c17700",
+    "format" : "model",
+    "displayName" : "Pedestal.usdz"
+  },
+  {
+    "libraryIdentifier" : "0f2acfba2f45bc85d6b305bf8027d622",
+    "format" : "model",
+    "displayName" : "Altar (1).usdz"
+  },
+  {
+    "libraryIdentifier" : "a4898ca98e23b4a99108e968d12c94ba",
+    "format" : "model",
+    "displayName" : "Gazebo.usdz"
+  }
+]
