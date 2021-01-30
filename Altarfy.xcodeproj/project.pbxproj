@@ -163,7 +163,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 5128BC4525C0D43B00372271 /* Build configuration list for PBXProject "ModelApp" */;
+			buildConfigurationList = 5128BC4525C0D43B00372271 /* Build configuration list for PBXProject "Altarfy" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -387,7 +387,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5128BC4525C0D43B00372271 /* Build configuration list for PBXProject "ModelApp" */ = {
+		5128BC4525C0D43B00372271 /* Build configuration list for PBXProject "Altarfy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5128BC5925C0D43D00372271 /* Debug */,
