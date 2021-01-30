@@ -41,15 +41,8 @@ struct ContentView : View {
 		ZStack {
 			ZStack(alignment: .bottom) {
 				ARViewContainer(selectedModel: self.$selectedModel)
-				
-//				if self.isPlacementEnabled {
-//					PlacementButtonsView(isPlacementEnabled: self.$isPlacementEnabled,
-//										 selectedModel: self.$selectedModel,
-//										 modelConfirmedForPlacement: self.$modelConfirmedForPlacement)
-//				} else {
-					ModelPickerView(selectedModel: self.$selectedModel,
-									models: self.models)
-//				}
+				ModelPickerView(selectedModel: self.$selectedModel,
+								models: self.models)
 			}
 		}
     }
