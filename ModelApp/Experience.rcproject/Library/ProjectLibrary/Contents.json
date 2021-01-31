@@ -18,5 +18,25 @@
     "libraryIdentifier" : "a4898ca98e23b4a99108e968d12c94ba",
     "format" : "model",
     "displayName" : "Gazebo.usdz"
+  },
+  {
+    "libraryIdentifier" : "60e81326e198f8071e556ac4d51f4b6d",
+    "format" : "model",
+    "displayName" : "Altar_marble.usdz"
+  },
+  {
+    "libraryIdentifier" : "fc5830969c1a2b55ffc31d57acf778c7",
+    "format" : "model",
+    "displayName" : "Rotonda.usdz"
+  },
+  {
+    "libraryIdentifier" : "8bfb72eac5b8282458b5a5f82db87b61",
+    "format" : "model",
+    "displayName" : "Altar (2).usdz"
+  },
+  {
+    "libraryIdentifier" : "b9f32812ba1dd02ab1bc737e23e10604",
+    "format" : "model",
+    "displayName" : "STATUE_PEDESTAL_LUCIUS_PERPENA_-_TARRACO.usdz"
   }
 ]

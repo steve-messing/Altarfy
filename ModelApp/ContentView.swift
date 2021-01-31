@@ -56,14 +56,12 @@ struct ARViewContainer: UIViewRepresentable {
 	@Binding var selectedModel: Model?
 	
 	let arView = ARView(frame: .zero)
-	let anchor = AnchorEntity(plane: .horizontal)
+	let anchor = try! Experience.loadBox()
 	let config = ARWorldTrackingConfiguration()
-	let boxAnchor = CustomBox(color: .white)
-	
 	
     func makeUIView(context: Context) -> ARView {
         
-		arView.scene.addAnchor(anchor)
+		arView.scene.anchors.append(anchor)
 		config.planeDetection = [.horizontal]
 		config.environmentTexturing = .automatic
 		
@@ -84,17 +82,13 @@ struct ARViewContainer: UIViewRepresentable {
 			if let modelEntity = model.modelEntity {
 				
 				modelEntity.scale = SIMD3<Float>(0.001, 0.001, 0.001)
-
-				let parentEntity = ModelEntity()
-				parentEntity.addChild(modelEntity)
 				
-				arView.installGestures([.all], for: parentEntity)
+				arView.installGestures([.all], for: modelEntity)
 				
-				parentEntity.generateCollisionShapes(recursive: true)
-				anchor.generateCollisionShapes(recursive: true)
+				modelEntity.generateCollisionShapes(recursive: true)
 				
-				anchor.addChild(parentEntity) // bug: .clone(recursive: true) breaks the gestures!!
-
+				anchor.addChild(modelEntity) // bug: .clone(recursive: true) breaks the gestures!!
+				modelEntity.setPosition(SIMD3<Float>(0, 0.97, -0.3), relativeTo: anchor)
 			}
 						
 			DispatchQueue.main.async {
@@ -107,30 +101,30 @@ struct ARViewContainer: UIViewRepresentable {
 
 // box helper method to make platform
 
-class CustomBox: Entity, HasModel, HasAnchoring, HasCollision {
-	
-	required init(color: UIColor) {
-		super.init()
-		self.components[ModelComponent] = ModelComponent(
-			mesh: .generateBox(size: 0.4, cornerRadius: 0.01),
-			materials: [SimpleMaterial(
-				color: color,
-				roughness: 2,
-				isMetallic: false
-			)
-			]
-		)
-	}
-	
-	convenience init(color: UIColor, position: SIMD3<Float>) {
-		self.init(color: color)
-		self.position = [-0.6, -1, -2]
-	}
-	
-	required init() {
-		fatalError("init() has not been implemented")
-	}
-}
+//class CustomBox: Entity, HasModel, HasAnchoring, HasCollision {
+//
+//	required init(color: UIColor) {
+//		super.init()
+//		self.components[ModelComponent] = ModelComponent(
+//			mesh: .generateBox(size: 0.4, cornerRadius: 0.01),
+//			materials: [SimpleMaterial(
+//				color: color,
+//				roughness: 2,
+//				isMetallic: false
+//			)
+//			]
+//		)
+//	}
+//
+//	convenience init(color: UIColor, position: SIMD3<Float>) {
+//		self.init(color: color)
+//		self.position = [-0.6, -1, -2]
+//	}
+//
+//	required init() {
+//		fatalError("init() has not been implemented")
+//	}
+//}
 
 
 // VIEWS
