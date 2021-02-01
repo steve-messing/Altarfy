@@ -12,11 +12,12 @@ import ARKit
 
 struct ContentView : View {
 	
-	@State private var isPlacementEnabled = false
-	@State private var selectedModel: Model?
+	// @State var isPlacementEnabled = false
+
 //	@State private var modelConfirmedForPlacement: Model?
-	
-	private var models: [Model] = { // initialize an array of models
+		
+	@State public var selectedModel: Model?
+	@State public var models: [Model] = {
 		
 		let filemanager = FileManager.default
 		
@@ -29,7 +30,6 @@ struct ContentView : View {
 		var availableModels: [Model] = []
 		
 		for filename in files where filename.hasSuffix("usdz") {
-			
 			let modelName = filename.replacingOccurrences(of: ".usdz", with: "")
 			let model = Model(modelName: modelName)
 			availableModels.append(model)
@@ -42,127 +42,18 @@ struct ContentView : View {
 			ZStack(alignment: .bottom) {
 				ARViewContainer(selectedModel: self.$selectedModel)
 				ModelPickerView(selectedModel: self.$selectedModel,
-								models: self.models)
+								models: self.$models)
 			}
 		}
     }
 }
 
 
-struct ARViewContainer: UIViewRepresentable {
-	
-	typealias UIViewType = ARView
-	
-	@Binding var selectedModel: Model?
-	
-	let arView = ARView(frame: .zero)
-	let anchor = try! Experience.loadBox()
-	let config = ARWorldTrackingConfiguration()
-	
-    func makeUIView(context: Context) -> ARView {
-        
-		arView.scene.anchors.append(anchor)
-		config.planeDetection = [.horizontal]
-		config.environmentTexturing = .automatic
-		
-		if ARWorldTrackingConfiguration.supportsSceneReconstruction(.mesh) {
-			config.sceneReconstruction = .mesh
-		}
-		
-		arView.session.run(config)
-		
-		return arView
-        
-    }
-    
-	func updateUIView(_ uiView: ARView, context: Self.Context) {
-				
-		if let model = self.selectedModel {
-			
-			if let modelEntity = model.modelEntity {
-				
-				modelEntity.scale = SIMD3<Float>(0.001, 0.001, 0.001)
-				
-				arView.installGestures([.all], for: modelEntity)
-				
-				modelEntity.generateCollisionShapes(recursive: true)
-				
-				anchor.addChild(modelEntity) // bug: .clone(recursive: true) breaks the gestures!!
-				modelEntity.setPosition(SIMD3<Float>(0, 0.97, -0.3), relativeTo: anchor)
-			}
-						
-			DispatchQueue.main.async {
-				self.selectedModel = nil
-			}
-		}
-	}
-}
 
 
-// box helper method to make platform
-
-//class CustomBox: Entity, HasModel, HasAnchoring, HasCollision {
-//
-//	required init(color: UIColor) {
-//		super.init()
-//		self.components[ModelComponent] = ModelComponent(
-//			mesh: .generateBox(size: 0.4, cornerRadius: 0.01),
-//			materials: [SimpleMaterial(
-//				color: color,
-//				roughness: 2,
-//				isMetallic: false
-//			)
-//			]
-//		)
-//	}
-//
-//	convenience init(color: UIColor, position: SIMD3<Float>) {
-//		self.init(color: color)
-//		self.position = [-0.6, -1, -2]
-//	}
-//
-//	required init() {
-//		fatalError("init() has not been implemented")
-//	}
-//}
 
 
-// VIEWS
 
-// Model Picker View
-
-struct ModelPickerView: View {
-//	@Binding var isPlacementEnabled: Bool
-	@Binding var selectedModel: Model?
-	 
-	var models: [Model]
-	
-	var body: some View {
-		ScrollView(.horizontal, showsIndicators: false) {
-			HStack(spacing: 30) {
-				ForEach(0 ..< self.models.count) { index in
-					Button(action: {
-						print(self.models[index])
-//						self.isPlacementEnabled = true
-						self.selectedModel = self.models[index]
-						
-					}) {
-//						Image(uiImage: self.models[index].image)
-						Image(uiImage: UIImage(named: "teapot")!)
-							.resizable()
-							.frame(width: 50, height: 50)
-							.aspectRatio(1/1, contentMode: .fit)
-							.background(Color.white)
-							.cornerRadius(12)
-					}
-					.buttonStyle(PlainButtonStyle())
-				}
-			}
-		}
-		.padding(20)
-		.background(Color.black.opacity(0.5))
-	}
-}
 
 
 // Placement Buttons View

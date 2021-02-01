@@ -24,7 +24,9 @@
 		5128BC9925C1158300372271 /* Gull_Skull.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 5128BC9125C1157A00372271 /* Gull_Skull.usdz */; };
 		5128BC9A25C1158300372271 /* Pyrite.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 5128BC9225C1158000372271 /* Pyrite.usdz */; };
 		5128BC9B25C1158300372271 /* Belted_Kingfisher.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 5128BC9325C1158300372271 /* Belted_Kingfisher.usdz */; };
-		5128BD4225C24A1000372271 /* StackingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5128BD4125C24A1000372271 /* StackingView.swift */; };
+		51CE16D225C656CD006D0E3C /* ThumbnailGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CE16D125C656CD006D0E3C /* ThumbnailGenerator.swift */; };
+		51CE16DD25C7B6F2006D0E3C /* ARViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CE16DC25C7B6F2006D0E3C /* ARViewContainer.swift */; };
+		51CE16E025C7B70B006D0E3C /* ModelPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CE16DF25C7B70B006D0E3C /* ModelPickerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,7 +49,9 @@
 		5128BC9125C1157A00372271 /* Gull_Skull.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Gull_Skull.usdz; sourceTree = "<group>"; };
 		5128BC9225C1158000372271 /* Pyrite.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Pyrite.usdz; sourceTree = "<group>"; };
 		5128BC9325C1158300372271 /* Belted_Kingfisher.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Belted_Kingfisher.usdz; sourceTree = "<group>"; };
-		5128BD4125C24A1000372271 /* StackingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackingView.swift; sourceTree = "<group>"; };
+		51CE16D125C656CD006D0E3C /* ThumbnailGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailGenerator.swift; sourceTree = "<group>"; };
+		51CE16DC25C7B6F2006D0E3C /* ARViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewContainer.swift; sourceTree = "<group>"; };
+		51CE16DF25C7B70B006D0E3C /* ModelPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelPickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,12 +84,13 @@
 		5128BC4C25C0D43B00372271 /* ModelApp */ = {
 			isa = PBXGroup;
 			children = (
-				5128BD3B25C2442900372271 /* Views */,
-				5128BC5F25C0D53200372271 /* Models */,
-				5128BC4D25C0D43B00372271 /* AppDelegate.swift */,
+				51CE16DF25C7B70B006D0E3C /* ModelPickerView.swift */,
+				51CE16DC25C7B6F2006D0E3C /* ARViewContainer.swift */,
 				5128BC4F25C0D43B00372271 /* ContentView.swift */,
-				5128BD4125C24A1000372271 /* StackingView.swift */,
 				5128BC8525C0F59400372271 /* Model.swift */,
+				51CE16D125C656CD006D0E3C /* ThumbnailGenerator.swift */,
+				5128BC5F25C0D53200372271 /* 3DModels */,
+				5128BC4D25C0D43B00372271 /* AppDelegate.swift */,
 				5128BC5125C0D43B00372271 /* Experience.rcproject */,
 				5128BC5325C0D43D00372271 /* Assets.xcassets */,
 				5128BC5825C0D43D00372271 /* Info.plist */,
@@ -102,7 +107,7 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		5128BC5F25C0D53200372271 /* Models */ = {
+		5128BC5F25C0D53200372271 /* 3DModels */ = {
 			isa = PBXGroup;
 			children = (
 				5128BC9025C1157400372271 /* Barred_Owl_Skull.usdz */,
@@ -117,14 +122,7 @@
 				5128BC6725C0D57500372271 /* fender_stratocaster.usdz */,
 				5128BC6425C0D56A00372271 /* flower_tulip.usdz */,
 			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		5128BD3B25C2442900372271 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
+			path = 3DModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,9 +211,11 @@
 			files = (
 				5128BC5025C0D43B00372271 /* ContentView.swift in Sources */,
 				5128BC4E25C0D43B00372271 /* AppDelegate.swift in Sources */,
+				51CE16E025C7B70B006D0E3C /* ModelPickerView.swift in Sources */,
 				5128BC5225C0D43B00372271 /* Experience.rcproject in Sources */,
 				5128BC8625C0F59400372271 /* Model.swift in Sources */,
-				5128BD4225C24A1000372271 /* StackingView.swift in Sources */,
+				51CE16D225C656CD006D0E3C /* ThumbnailGenerator.swift in Sources */,
+				51CE16DD25C7B6F2006D0E3C /* ARViewContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

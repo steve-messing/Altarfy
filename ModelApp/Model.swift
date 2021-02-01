@@ -10,6 +10,7 @@ import UIKit
 import SwiftUI
 import RealityKit
 import Combine
+import QuickLookThumbnailing
 
 
 class Model {
@@ -23,11 +24,9 @@ class Model {
 		
 		self.modelName = modelName
 		
-//		self.image = UIImage(named: modelName)! // fix this later! to dynamically display image previews
-		
-		self.image = UIImage(named: "teapot")!
-		
 		let filename = modelName + ".usdz"
+		
+		self.image = UIImage(named: "flower_tulip")!
 		
 		self.cancellable = ModelEntity.loadModelAsync(named: filename)
 			.sink(receiveCompletion: { loadCompletion in
