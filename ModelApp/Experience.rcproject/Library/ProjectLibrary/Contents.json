@@ -38,5 +38,25 @@
     "libraryIdentifier" : "b9f32812ba1dd02ab1bc737e23e10604",
     "format" : "model",
     "displayName" : "STATUE_PEDESTAL_LUCIUS_PERPENA_-_TARRACO.usdz"
+  },
+  {
+    "libraryIdentifier" : "b5af32d9cd232ccfc0cb44de53bd792f",
+    "format" : "model",
+    "displayName" : "Altar (3).usdz"
+  },
+  {
+    "libraryIdentifier" : "f1600e00dfeec159c5bbc913129d0097",
+    "format" : "model",
+    "displayName" : "Pedestal (1).usdz"
+  },
+  {
+    "libraryIdentifier" : "7e937c37e4f90d54fbd30dad1bced275",
+    "format" : "model",
+    "displayName" : "Altar_no_chalice.usdz"
+  },
+  {
+    "libraryIdentifier" : "1deba9820263ee8b3cf1861fbba34b37",
+    "format" : "model",
+    "displayName" : "Altar.usdz"
   }
 ]

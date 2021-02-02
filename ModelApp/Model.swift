@@ -18,14 +18,14 @@ class Model {
 	var modelName: String
 	var image: UIImage
 	var modelEntity: ModelEntity?
+	var scaleCompensation: Float
 	private var cancellable: AnyCancellable? = nil
 	
-	init(modelName: String) {
+	init(modelName: String, scaleCompensation: Float = 1.0) {
 		
 		self.modelName = modelName
-		
 		let filename = modelName + ".usdz"
-		
+		self.scaleCompensation = scaleCompensation	
 		self.image = UIImage(named: "flower_tulip")!
 		
 		self.cancellable = ModelEntity.loadModelAsync(named: filename)
