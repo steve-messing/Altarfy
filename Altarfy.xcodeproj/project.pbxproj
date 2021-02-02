@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		511B4E0425C91C7A0011A471 /* Nature_Lotus_Flower.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 511B4E0325C91C7A0011A471 /* Nature_Lotus_Flower.usdz */; };
+		511B4E0B25C925130011A471 /* Stone_Magic_Crystal.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 511B4E0A25C925130011A471 /* Stone_Magic_Crystal.usdz */; };
 		5128BC4E25C0D43B00372271 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5128BC4D25C0D43B00372271 /* AppDelegate.swift */; };
 		5128BC5025C0D43B00372271 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5128BC4F25C0D43B00372271 /* ContentView.swift */; };
 		5128BC5225C0D43B00372271 /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = 5128BC5125C0D43B00372271 /* Experience.rcproject */; };
@@ -14,7 +16,6 @@
 		5128BC5725C0D43D00372271 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5128BC5625C0D43D00372271 /* Preview Assets.xcassets */; };
 		5128BC8625C0F59400372271 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5128BC8525C0F59400372271 /* Model.swift */; };
 		519758EE25C90428006F4764 /* Nature_Rose.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 519758CF25C90423006F4764 /* Nature_Rose.usdz */; };
-		519758F225C90428006F4764 /* Stone_Magic_Crystal.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 519758D325C90424006F4764 /* Stone_Magic_Crystal.usdz */; };
 		519758F325C90428006F4764 /* Human_Bell.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 519758D425C90424006F4764 /* Human_Bell.usdz */; };
 		519758F425C90428006F4764 /* Human_Candle_light.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 519758D525C90424006F4764 /* Human_Candle_light.usdz */; };
 		519758F525C90428006F4764 /* Stone_05.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 519758D625C90424006F4764 /* Stone_05.usdz */; };
@@ -43,6 +44,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		511B4E0325C91C7A0011A471 /* Nature_Lotus_Flower.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Nature_Lotus_Flower.usdz; sourceTree = "<group>"; };
+		511B4E0A25C925130011A471 /* Stone_Magic_Crystal.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Stone_Magic_Crystal.usdz; sourceTree = "<group>"; };
 		5128BC4A25C0D43B00372271 /* ModelApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ModelApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5128BC4D25C0D43B00372271 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5128BC4F25C0D43B00372271 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -52,7 +55,6 @@
 		5128BC5825C0D43D00372271 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5128BC8525C0F59400372271 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		519758CF25C90423006F4764 /* Nature_Rose.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Nature_Rose.usdz; sourceTree = "<group>"; };
-		519758D325C90424006F4764 /* Stone_Magic_Crystal.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Stone_Magic_Crystal.usdz; sourceTree = "<group>"; };
 		519758D425C90424006F4764 /* Human_Bell.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Human_Bell.usdz; sourceTree = "<group>"; };
 		519758D525C90424006F4764 /* Human_Candle_light.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Human_Candle_light.usdz; sourceTree = "<group>"; };
 		519758D625C90424006F4764 /* Stone_05.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Stone_05.usdz; sourceTree = "<group>"; };
@@ -154,12 +156,13 @@
 				519758DF25C90425006F4764 /* Human_Temple_miniature.usdz */,
 				519758E425C90426006F4764 /* Human_The_Thinker_by_Auguste_Rodin.usdz */,
 				519758E025C90425006F4764 /* Nature_Mortar_with_herbs.usdz */,
+				511B4E0325C91C7A0011A471 /* Nature_Lotus_Flower.usdz */,
 				519758CF25C90423006F4764 /* Nature_Rose.usdz */,
 				519758D825C90424006F4764 /* Stone_03.usdz */,
 				519758E725C90426006F4764 /* Stone_04.usdz */,
 				519758D625C90424006F4764 /* Stone_05.usdz */,
 				519758EA25C90427006F4764 /* Stone_06.usdz */,
-				519758D325C90424006F4764 /* Stone_Magic_Crystal.usdz */,
+				511B4E0A25C925130011A471 /* Stone_Magic_Crystal.usdz */,
 			);
 			path = 3DModels;
 			sourceTree = "<group>";
@@ -231,6 +234,7 @@
 				519758FF25C90428006F4764 /* Nature_Mortar_with_herbs.usdz in Resources */,
 				519758EE25C90428006F4764 /* Nature_Rose.usdz in Resources */,
 				519758F925C90428006F4764 /* Gems_9.usdz in Resources */,
+				511B4E0425C91C7A0011A471 /* Nature_Lotus_Flower.usdz in Resources */,
 				519758F325C90428006F4764 /* Human_Bell.usdz in Resources */,
 				5197590C25C90428006F4764 /* Food_Chicken_of_the_Woods_Mushroom.usdz in Resources */,
 				519758F625C90428006F4764 /* Human_Pintadeira_de_Pão.usdz in Resources */,
@@ -239,9 +243,9 @@
 				519758FD25C90428006F4764 /* Food_romanesco_broccoli.usdz in Resources */,
 				5197590625C90428006F4764 /* Stone_04.usdz in Resources */,
 				519758FA25C90428006F4764 /* Food_apple.usdz in Resources */,
-				519758F225C90428006F4764 /* Stone_Magic_Crystal.usdz in Resources */,
 				519758FB25C90428006F4764 /* Food_Horned_Melon.usdz in Resources */,
 				5197590A25C90428006F4764 /* Human_goblet1.usdz in Resources */,
+				511B4E0B25C925130011A471 /* Stone_Magic_Crystal.usdz in Resources */,
 				5197590825C90428006F4764 /* Gems_6.usdz in Resources */,
 				519758F525C90428006F4764 /* Stone_05.usdz in Resources */,
 				5197590925C90428006F4764 /* Stone_06.usdz in Resources */,

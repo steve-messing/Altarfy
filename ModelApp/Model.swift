@@ -26,7 +26,7 @@ class Model {
 		self.modelName = modelName
 		let filename = modelName + ".usdz"
 		self.scaleCompensation = scaleCompensation	
-		self.image = UIImage(named: "flower_tulip")!
+		self.image = UIImage(named: modelName) ?? UIImage(systemName: "photo")!
 		
 		self.cancellable = ModelEntity.loadModelAsync(named: filename)
 			.sink(receiveCompletion: { loadCompletion in

@@ -23,7 +23,7 @@ struct ModelPickerView: View {
 			HStack(spacing: 30) {
 				ForEach(0 ..< self.models.count) { index in
 					Button(action: {
-						print(self.models[index])
+						print(self.models[index].modelName)
 						self.selectedModel = self.models[index]
 						
 					}) {
