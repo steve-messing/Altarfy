@@ -75,6 +75,8 @@ struct ARViewContainer: UIViewRepresentable {
 		}
 		
 		arView.enableObjectRemoval()
+//		arView.enableObjectDuplicate()
+		
 		arView.session.run(config)
 		
 		return arView
@@ -89,16 +91,14 @@ struct ARViewContainer: UIViewRepresentable {
 				
 				modelEntity.scale = SIMD3<Float>(0.001, 0.001, 0.001)
 				
-				let anchorEntity = AnchorEntity()
-				anchorEntity.name = model.modelName
+//				let anchorEntity = AnchorEntity()
+//				modelEntity.setParent(anchorEntity)
 				
 				modelEntity.generateCollisionShapes(recursive: true)
 				arView.installGestures(for: modelEntity)
 				
-				anchorEntity.addChild(modelEntity)
-//				arView.scene.addAnchor(anchorEntity)
-				anchor.addChild(anchorEntity) // bug: .clone(recursive: true) breaks the gestures!!
-				anchorEntity.setPosition(SIMD3<Float>(0, 0.97, -0.3), relativeTo: anchor)
+				anchor.addChild(modelEntity)
+				modelEntity.setPosition(SIMD3<Float>(0, 0.97, -0.3), relativeTo: anchor)
 				
 				var placedModels: [Model] = []
 				placedModels.append(model)
@@ -112,23 +112,43 @@ struct ARViewContainer: UIViewRepresentable {
 		}
 	}
 
+// long press duplicate
+//extension ARView {
+//
+//	func enableObjectDuplicate() {
+//		let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(recognizer:)))
+//
+//		self.addGestureRecognizer(longPressGestureRecognizer)
+//	}
+//
+//	@objc func handleLongPress(recognizer: UILongPressGestureRecognizer) {
+//		let location = recognizer.location(in: self)
+//
+//		if let entity = self.entity(at: location) {
+//			if let anchor = entity.anchor {
+//				let clonedEntity = entity.clone(recursive: true)
+//				anchor.addChild(clonedEntity)
+//			}
+//		}
+//	}
+//}
 
+// double tap delete
 extension ARView {
 	
 	func enableObjectRemoval() {
-		let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(recognizer:)))
+		let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(recognizer:)))
 		
-		self.addGestureRecognizer(longPressGestureRecognizer)
+		tapGestureRecognizer.numberOfTapsRequired = 2
+		
+		self.addGestureRecognizer(tapGestureRecognizer)
 	}
 	
-	@objc func handleLongPress(recognizer: UILongPressGestureRecognizer) {
+	@objc func handleTap(recognizer: UITapGestureRecognizer) {
 		let location = recognizer.location(in: self)
 		
 		if let entity = self.entity(at: location) {
-			if let anchorEntity = entity.anchor {
-				anchorEntity.removeFromParent()
-				print("succesfully removed \(anchorEntity.name)")
-			}
+			entity.removeFromParent()
 		}
 	}
 }
