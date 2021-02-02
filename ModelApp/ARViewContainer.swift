@@ -32,13 +32,13 @@ class SpotLighting: Entity, HasSpotLight {
 		super.init()
 		
 		self.light = SpotLightComponent(color: .white,
-											   intensity: 15000,
+											   intensity: 20000,
 											   innerAngleInDegrees: 70,
 											   outerAngleInDegrees: 120,
 											   attenuationRadius: 9.0)
 		
 		self.shadow = SpotLightComponent.Shadow()
-		self.position.y = 1.4
+		self.position.y = 1.2
 	}
 }
 
