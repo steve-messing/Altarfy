@@ -43,6 +43,7 @@ class SpotLighting: Entity, HasSpotLight {
 }
 
 
+
 struct ARViewContainer: UIViewRepresentable {
 	
 	typealias UIViewType = ARView
@@ -57,11 +58,13 @@ struct ARViewContainer: UIViewRepresentable {
 	let spotLight = SpotLighting()
 	let lightAnchor = AnchorEntity()
 	
-	func makeUIView(context: Context) -> ARView {
+	// tap gestures
 	
+	func makeUIView(context: Context) -> ARView {
 		
 		arView.scene.anchors.append(lightAnchor)
 		lightAnchor.addChild(spotLight)
+		
 		
 		arView.scene.anchors.append(anchor)
 		config.planeDetection = [.horizontal]
@@ -71,6 +74,7 @@ struct ARViewContainer: UIViewRepresentable {
 			config.sceneReconstruction = .mesh
 		}
 		
+		arView.enableObjectRemoval()
 		arView.session.run(config)
 		
 		return arView
@@ -85,24 +89,48 @@ struct ARViewContainer: UIViewRepresentable {
 				
 				modelEntity.scale = SIMD3<Float>(0.001, 0.001, 0.001)
 				
-				arView.installGestures([.all], for: modelEntity)
+				let anchorEntity = AnchorEntity()
+				anchorEntity.name = model.modelName
 				
 				modelEntity.generateCollisionShapes(recursive: true)
+				arView.installGestures(for: modelEntity)
 				
-				anchor.addChild(modelEntity) // bug: .clone(recursive: true) breaks the gestures!!
-							
-				modelEntity.setPosition(SIMD3<Float>(0, 0.97, -0.3), relativeTo: anchor)
+				anchorEntity.addChild(modelEntity)
+//				arView.scene.addAnchor(anchorEntity)
+				anchor.addChild(anchorEntity) // bug: .clone(recursive: true) breaks the gestures!!
+				anchorEntity.setPosition(SIMD3<Float>(0, 0.97, -0.3), relativeTo: anchor)
 				
 				var placedModels: [Model] = []
 				placedModels.append(model)
 				
 				}
-				
 			}
-			
+					
 			DispatchQueue.main.async {
 				self.selectedModel = nil
 			}
 		}
 	}
+
+
+extension ARView {
+	
+	func enableObjectRemoval() {
+		let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(recognizer:)))
+		
+		self.addGestureRecognizer(longPressGestureRecognizer)
+	}
+	
+	@objc func handleLongPress(recognizer: UILongPressGestureRecognizer) {
+		let location = recognizer.location(in: self)
+		
+		if let entity = self.entity(at: location) {
+			if let anchorEntity = entity.anchor {
+				anchorEntity.removeFromParent()
+				print("succesfully removed \(anchorEntity.name)")
+			}
+		}
+	}
+}
+
 
