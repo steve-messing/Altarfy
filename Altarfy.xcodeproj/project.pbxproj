@@ -16,7 +16,6 @@
 		5128BC5725C0D43D00372271 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5128BC5625C0D43D00372271 /* Preview Assets.xcassets */; };
 		5128BC8625C0F59400372271 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5128BC8525C0F59400372271 /* Model.swift */; };
 		519758EE25C90428006F4764 /* Nature_Rose.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 519758CF25C90423006F4764 /* Nature_Rose.usdz */; };
-		519758F325C90428006F4764 /* Human_Bell.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 519758D425C90424006F4764 /* Human_Bell.usdz */; };
 		519758F425C90428006F4764 /* Human_Candle_light.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 519758D525C90424006F4764 /* Human_Candle_light.usdz */; };
 		519758F525C90428006F4764 /* Stone_05.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 519758D625C90424006F4764 /* Stone_05.usdz */; };
 		519758F625C90428006F4764 /* Human_Pintadeira_de_Pão.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 519758D725C90424006F4764 /* Human_Pintadeira_de_Pão.usdz */; };
@@ -25,7 +24,6 @@
 		519758F925C90428006F4764 /* Gems_9.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 519758DA25C90425006F4764 /* Gems_9.usdz */; };
 		519758FA25C90428006F4764 /* Food_apple.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 519758DB25C90425006F4764 /* Food_apple.usdz */; };
 		519758FB25C90428006F4764 /* Food_Horned_Melon.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 519758DC25C90425006F4764 /* Food_Horned_Melon.usdz */; };
-		519758FD25C90428006F4764 /* Food_romanesco_broccoli.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 519758DE25C90425006F4764 /* Food_romanesco_broccoli.usdz */; };
 		519758FE25C90428006F4764 /* Human_Temple_miniature.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 519758DF25C90425006F4764 /* Human_Temple_miniature.usdz */; };
 		519758FF25C90428006F4764 /* Nature_Mortar_with_herbs.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 519758E025C90425006F4764 /* Nature_Mortar_with_herbs.usdz */; };
 		5197590325C90428006F4764 /* Human_The_Thinker_by_Auguste_Rodin.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 519758E425C90426006F4764 /* Human_The_Thinker_by_Auguste_Rodin.usdz */; };
@@ -55,7 +53,6 @@
 		5128BC5825C0D43D00372271 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5128BC8525C0F59400372271 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		519758CF25C90423006F4764 /* Nature_Rose.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Nature_Rose.usdz; sourceTree = "<group>"; };
-		519758D425C90424006F4764 /* Human_Bell.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Human_Bell.usdz; sourceTree = "<group>"; };
 		519758D525C90424006F4764 /* Human_Candle_light.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Human_Candle_light.usdz; sourceTree = "<group>"; };
 		519758D625C90424006F4764 /* Stone_05.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Stone_05.usdz; sourceTree = "<group>"; };
 		519758D725C90424006F4764 /* Human_Pintadeira_de_Pão.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "Human_Pintadeira_de_Pão.usdz"; sourceTree = "<group>"; };
@@ -64,7 +61,6 @@
 		519758DA25C90425006F4764 /* Gems_9.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Gems_9.usdz; sourceTree = "<group>"; };
 		519758DB25C90425006F4764 /* Food_apple.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Food_apple.usdz; sourceTree = "<group>"; };
 		519758DC25C90425006F4764 /* Food_Horned_Melon.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Food_Horned_Melon.usdz; sourceTree = "<group>"; };
-		519758DE25C90425006F4764 /* Food_romanesco_broccoli.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Food_romanesco_broccoli.usdz; sourceTree = "<group>"; };
 		519758DF25C90425006F4764 /* Human_Temple_miniature.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Human_Temple_miniature.usdz; sourceTree = "<group>"; };
 		519758E025C90425006F4764 /* Nature_Mortar_with_herbs.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Nature_Mortar_with_herbs.usdz; sourceTree = "<group>"; };
 		519758E425C90426006F4764 /* Human_The_Thinker_by_Auguste_Rodin.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Human_The_Thinker_by_Auguste_Rodin.usdz; sourceTree = "<group>"; };
@@ -142,10 +138,8 @@
 				519758ED25C90427006F4764 /* Food_Chicken_of_the_Woods_Mushroom.usdz */,
 				519758DC25C90425006F4764 /* Food_Horned_Melon.usdz */,
 				519758D925C90424006F4764 /* Food_orange.usdz */,
-				519758DE25C90425006F4764 /* Food_romanesco_broccoli.usdz */,
 				519758E925C90427006F4764 /* Gems_6.usdz */,
 				519758DA25C90425006F4764 /* Gems_9.usdz */,
-				519758D425C90424006F4764 /* Human_Bell.usdz */,
 				519758E625C90426006F4764 /* Human_Book.usdz */,
 				519758D525C90424006F4764 /* Human_Candle_light.usdz */,
 				519758E525C90426006F4764 /* Human_Clay_Duck.usdz */,
@@ -235,12 +229,10 @@
 				519758EE25C90428006F4764 /* Nature_Rose.usdz in Resources */,
 				519758F925C90428006F4764 /* Gems_9.usdz in Resources */,
 				511B4E0425C91C7A0011A471 /* Nature_Lotus_Flower.usdz in Resources */,
-				519758F325C90428006F4764 /* Human_Bell.usdz in Resources */,
 				5197590C25C90428006F4764 /* Food_Chicken_of_the_Woods_Mushroom.usdz in Resources */,
 				519758F625C90428006F4764 /* Human_Pintadeira_de_Pão.usdz in Resources */,
 				5128BC5725C0D43D00372271 /* Preview Assets.xcassets in Resources */,
 				519758F825C90428006F4764 /* Food_orange.usdz in Resources */,
-				519758FD25C90428006F4764 /* Food_romanesco_broccoli.usdz in Resources */,
 				5197590625C90428006F4764 /* Stone_04.usdz in Resources */,
 				519758FA25C90428006F4764 /* Food_apple.usdz in Resources */,
 				519758FB25C90428006F4764 /* Food_Horned_Melon.usdz in Resources */,
