@@ -40,7 +40,7 @@ struct ContentView : View {
 	var body: some View { // display UI buttons and list
 		ZStack {
 			ZStack(alignment: .bottom) {
-				ARViewContainer(selectedModel: self.$selectedModel)
+				ARViewContainer(selectedModel: self.$selectedModel).edgesIgnoringSafeArea(.all)
 				ModelPickerView(selectedModel: self.$selectedModel,
 								models: self.$models)
 			}
