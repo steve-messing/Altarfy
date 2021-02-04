@@ -10,43 +10,46 @@ import UIKit
 import RealityKit
 import ARKit
 
-struct ContentView : View {
-	
-	// @State var isPlacementEnabled = false
-
-//	@State private var modelConfirmedForPlacement: Model?
-		
-	@State public var selectedModel: Model?
-	@State public var models: [Model] = {
-		
-		let filemanager = FileManager.default
-		
-		guard let path = Bundle.main.resourcePath, let files = try?
-			filemanager.contentsOfDirectory(atPath: path)
-			else {
-			return []
-		}
-		
-		var availableModels: [Model] = []
-		
-		for filename in files where filename.hasSuffix("usdz") {
-			let modelName = filename.replacingOccurrences(of: ".usdz", with: "")
-			let model = Model(modelName: modelName)
-			availableModels.append(model)
-		}
-		return availableModels
-	}()
-	
-	var body: some View { // display UI buttons and list
-		ZStack {
-			ZStack(alignment: .bottom) {
-				ARViewContainer(selectedModel: self.$selectedModel).edgesIgnoringSafeArea(.all)
-				ModelPickerView(selectedModel: self.$selectedModel,
-								models: self.$models)
-			}
-		}
-    }
-}
+//struct ContentView : View {
+//	
+//	@State public var selectedModel: Model?
+//	@State public var models: [Model] = {
+//	@State var saver = false
+//		
+//		let filemanager = FileManager.default
+//		
+//		guard let path = Bundle.main.resourcePath, let files = try?
+//			filemanager.contentsOfDirectory(atPath: path)
+//			else {
+//			return []
+//		}
+//		
+//		var availableModels: [Model] = []
+//		
+//		for filename in files where filename.hasSuffix("usdz") {
+//			let modelName = filename.replacingOccurrences(of: ".usdz", with: "")
+//			let model = Model(modelName: modelName)
+//			availableModels.append(model)
+//		}
+//		return availableModels
+//	}()
+//	
+//	var body: some View { // display UI buttons and list
+//		VStack {
+//			ZStack(alignment: .bottom) {
+//				ARViewContainer(saved: $saver, selectedModel: self.$selectedModel).edgesIgnoringSafeArea(.all)
+//				ModelPickerView(selectedModel: self.$selectedModel, models: self.$models)
+//				
+//			}
+//			HStack {
+//				Spacer()
+//				Button(action: { self.saver.toggle() }) {
+//					Text("Save")
+//				}
+//				Spacer()
+//		}
+//    }
+//}
 
 
 

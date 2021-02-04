@@ -49,6 +49,9 @@ struct ARViewContainer: UIViewRepresentable {
 	typealias UIViewType = ARView
 	
 	@Binding var selectedModel: Model?
+	@Binding var saved: Bool
+	
+	let storedData = UserDefaults.standard
 	
 	let arView = ARView(frame: .zero)
 	let anchor = try! Experience.loadBox()
@@ -65,8 +68,6 @@ struct ARViewContainer: UIViewRepresentable {
 		arView.scene.anchors.append(lightAnchor)
 		lightAnchor.addChild(spotLight)
 		
-		
-		arView.scene.anchors.append(anchor)
 		config.planeDetection = [.horizontal]
 		config.environmentTexturing = .automatic
 		
@@ -75,12 +76,19 @@ struct ARViewContainer: UIViewRepresentable {
 		}
 		
 		arView.enableObjectRemoval()
-//		arView.enableObjectDuplicate()
 		
+		arView.scene.anchors.append(anchor)
 		arView.session.run(config)
-		
+		config.planeDetection = []
 		return arView
 		
+	}
+	
+	func saveWorldMap() {
+		print("SAVED")
+		DispatchQueue.main.async {
+			saved = false
+		}
 	}
 	
 	func updateUIView(_ uiView: ARView, context: Self.Context) {
@@ -109,29 +117,12 @@ struct ARViewContainer: UIViewRepresentable {
 			DispatchQueue.main.async {
 				self.selectedModel = nil
 			}
+		
+			if saved {
+				self.saveWorldMap()
+			}
 		}
 	}
-
-// long press duplicate
-//extension ARView {
-//
-//	func enableObjectDuplicate() {
-//		let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(recognizer:)))
-//
-//		self.addGestureRecognizer(longPressGestureRecognizer)
-//	}
-//
-//	@objc func handleLongPress(recognizer: UILongPressGestureRecognizer) {
-//		let location = recognizer.location(in: self)
-//
-//		if let entity = self.entity(at: location) {
-//			if let anchor = entity.anchor {
-//				let clonedEntity = entity.clone(recursive: true)
-//				anchor.addChild(clonedEntity)
-//			}
-//		}
-//	}
-//}
 
 // double tap delete
 extension ARView {
@@ -154,3 +145,43 @@ extension ARView {
 }
 
 
+struct ContentView : View {
+	
+	@State private var saver = false
+	@State public var selectedModel: Model?
+	@State public var models: [Model] = {
+		let filemanager = FileManager.default
+		
+		guard let path = Bundle.main.resourcePath, let files = try?
+				filemanager.contentsOfDirectory(atPath: path)
+		else {
+			return []
+		}
+		
+		var availableModels: [Model] = []
+		
+		for filename in files where filename.hasSuffix("usdz") {
+			let modelName = filename.replacingOccurrences(of: ".usdz", with: "")
+			let model = Model(modelName: modelName)
+			availableModels.append(model)
+		}
+		return availableModels
+	}()
+	
+	var body: some View { // display UI buttons and list
+		VStack {
+			ZStack(alignment: .bottom) {
+				ARViewContainer(selectedModel: self.$selectedModel, saved: $saver).edgesIgnoringSafeArea(.all)
+				ModelPickerView(selectedModel: self.$selectedModel, models: self.$models)
+				
+			}
+			HStack {
+				Spacer()
+				Button(action: { self.saver.toggle() }) {
+					Text("Save")
+				}
+				Spacer()
+			}
+		}
+	}
+}
