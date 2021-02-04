@@ -25,7 +25,6 @@ class DirectionalLighting: Entity, HasDirectionalLight {
 	}
 }
 
-
 class SpotLighting: Entity, HasSpotLight {
 	
 	required init() {
@@ -84,12 +83,39 @@ struct ARViewContainer: UIViewRepresentable {
 		
 	}
 	
-	func saveWorldMap() {
-		print("SAVED")
-		DispatchQueue.main.async {
-			saved = false
-		}
-	}
+//	func saveWorldMap() {
+//		
+//		arView.session.getCurrentWorldMap { worldMap, _ in
+//			guard let map = worldMap else {
+//				return
+//			}
+//			
+//			let alert = UIAlertController(title: "Altar Name", message: "File name to save the Altar to.", preferredStyle: .alert)
+//			alert.addTextField { (textField) in
+//				let dateFormatter = DateFormatter()
+//				dateFormatter.dateFormat = "YYYYMMdd-hhmmss"
+//				
+//				textField.text = "\(dateFormatter.string(from: Date()))"
+//				textField.clearsOnInsertion = true
+//			}
+//			
+//			let fileName = alert.textFields?.first?.text ?? "Untitled"
+//			
+//			do {
+//				let data = try NSKeyedArchiver.archivedData(withRootObject: map, requiringSecureCoding: true)
+//				let savedMap = UserDefaults.standard
+//				savedMap.set(data, forKey: fileName)
+//				savedMap.synchronize()
+//			} catch {
+//				fatalError("Can't save map: \(error.localizedDescription)")
+//			}
+//		}
+//		
+//		print("SAVED")
+//		DispatchQueue.main.async {
+//			saved = false
+//		}
+//	}
 	
 	func updateUIView(_ uiView: ARView, context: Self.Context) {
 		
@@ -170,18 +196,20 @@ struct ContentView : View {
 	
 	var body: some View { // display UI buttons and list
 		VStack {
+			
+			HStack {
+				Spacer()
+				Button(action: { self.saver.toggle() }) {
+					Text("Save")
+				}.padding(.trailing)
+			}
+			
 			ZStack(alignment: .bottom) {
 				ARViewContainer(selectedModel: self.$selectedModel, saved: $saver).edgesIgnoringSafeArea(.all)
 				ModelPickerView(selectedModel: self.$selectedModel, models: self.$models)
 				
 			}
-			HStack {
-				Spacer()
-				Button(action: { self.saver.toggle() }) {
-					Text("Save")
-				}
-				Spacer()
-			}
+
 		}
 	}
 }
