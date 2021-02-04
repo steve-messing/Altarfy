@@ -48,12 +48,12 @@ struct ARViewContainer: UIViewRepresentable {
 	typealias UIViewType = ARView
 	
 	@Binding var selectedModel: Model?
+	
 	@Binding var saved: Bool
-	
-	let storedData = UserDefaults.standard
-	
+	@Binding var loaded: Bool
+		
 	let arView = ARView(frame: .zero)
-	let anchor = try! Experience.loadBox()
+	let anchor = try! Experience.loadScene()
 	let config = ARWorldTrackingConfiguration()
 	
 	let directionalLight = DirectionalLighting()
@@ -79,43 +79,15 @@ struct ARViewContainer: UIViewRepresentable {
 		arView.scene.anchors.append(anchor)
 		arView.session.run(config)
 		config.planeDetection = []
+		
+		
+		if loaded {
+			self.loadWorldMap()
+		}
+		
 		return arView
 		
 	}
-	
-//	func saveWorldMap() {
-//		
-//		arView.session.getCurrentWorldMap { worldMap, _ in
-//			guard let map = worldMap else {
-//				return
-//			}
-//			
-//			let alert = UIAlertController(title: "Altar Name", message: "File name to save the Altar to.", preferredStyle: .alert)
-//			alert.addTextField { (textField) in
-//				let dateFormatter = DateFormatter()
-//				dateFormatter.dateFormat = "YYYYMMdd-hhmmss"
-//				
-//				textField.text = "\(dateFormatter.string(from: Date()))"
-//				textField.clearsOnInsertion = true
-//			}
-//			
-//			let fileName = alert.textFields?.first?.text ?? "Untitled"
-//			
-//			do {
-//				let data = try NSKeyedArchiver.archivedData(withRootObject: map, requiringSecureCoding: true)
-//				let savedMap = UserDefaults.standard
-//				savedMap.set(data, forKey: fileName)
-//				savedMap.synchronize()
-//			} catch {
-//				fatalError("Can't save map: \(error.localizedDescription)")
-//			}
-//		}
-//		
-//		print("SAVED")
-//		DispatchQueue.main.async {
-//			saved = false
-//		}
-//	}
 	
 	func updateUIView(_ uiView: ARView, context: Self.Context) {
 		
@@ -143,6 +115,8 @@ struct ARViewContainer: UIViewRepresentable {
 			DispatchQueue.main.async {
 				self.selectedModel = nil
 			}
+			print("saved is \(saved)")
+			print("loaded is \(loaded)")
 		
 			if saved {
 				self.saveWorldMap()
@@ -174,6 +148,8 @@ extension ARView {
 struct ContentView : View {
 	
 	@State private var saver = false
+	@State private var loader = false
+	
 	@State public var selectedModel: Model?
 	@State public var models: [Model] = {
 		let filemanager = FileManager.default
@@ -197,17 +173,23 @@ struct ContentView : View {
 	var body: some View { // display UI buttons and list
 		VStack {
 			
-			HStack {
+			ZStack(alignment: .bottom) {
+				
+				ARViewContainer(selectedModel: self.$selectedModel, saved: $saver, loaded: $loader).edgesIgnoringSafeArea(.all)
+				ModelPickerView(selectedModel: self.$selectedModel, models: self.$models)
+			}
+			
+				HStack(alignment: .top) {
+				Button(action: { self.loader.toggle() }) {
+					Text("Load")
+				}.padding(.leading)
+				
 				Spacer()
+				
 				Button(action: { self.saver.toggle() }) {
 					Text("Save")
 				}.padding(.trailing)
-			}
-			
-			ZStack(alignment: .bottom) {
-				ARViewContainer(selectedModel: self.$selectedModel, saved: $saver).edgesIgnoringSafeArea(.all)
-				ModelPickerView(selectedModel: self.$selectedModel, models: self.$models)
-				
+
 			}
 
 		}

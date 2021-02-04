@@ -14,10 +14,58 @@
             filePath = "ModelApp/ARViewContainer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
             landmarkName = "updateUIView(_:context:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1900F3E5-ADC3-4CAF-ABCA-3F29E093359B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ModelApp/SaveLoadWorldMap.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "saveWorldMap()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "1900F3E5-ADC3-4CAF-ABCA-3F29E093359B - a23867eeba44d4de"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ModelApp.ARViewContainer.saveWorldMap() -&gt; ()"
+                  moduleName = "ModelApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/SophieMessing/Ada/Capstone/Altarfy/ModelApp/SaveLoadWorldMap.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "32">
+               </Location>
+               <Location
+                  uuid = "1900F3E5-ADC3-4CAF-ABCA-3F29E093359B - 76b5f1dac1c1e2f7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.ARWorldMap&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in ModelApp.ARViewContainer.saveWorldMap() -&gt; ()"
+                  moduleName = "ModelApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/SophieMessing/Ada/Capstone/Altarfy/ModelApp/SaveLoadWorldMap.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "532">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

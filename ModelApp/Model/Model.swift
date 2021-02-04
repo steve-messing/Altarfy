@@ -30,7 +30,7 @@ class Model {
 		
 		self.cancellable = ModelEntity.loadModelAsync(named: filename)
 			.sink(receiveCompletion: { loadCompletion in
-				print("unable to load modelEntity for modelName \(self.modelName)")
+				// print("unable to load modelEntity for modelName \(self.modelName)")
 			}, receiveValue: { modelEntity in
 				self.modelEntity = modelEntity
 				print("successfully loaded modelEntity for modelName \(self.modelName)")

@@ -248,7 +248,7 @@
                 ]
               },
               "physicsMode" : "grid",
-              "title" : "Box",
+              "title" : "Scene",
               "viewTransform" : {
                 "cameraTransform" : [
                   0.99849140644073486,
