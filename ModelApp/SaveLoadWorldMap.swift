@@ -14,6 +14,7 @@ import RealityKit
 extension ARViewContainer {
 
 	func saveWorldMap() {
+		loaded = false
 		print("in saveWorldMap")
 		arView.session.getCurrentWorldMap { worldMap, _ in
 			print("in callback")
@@ -25,16 +26,11 @@ extension ARViewContainer {
 			 let dateFormatter = DateFormatter()
 			 dateFormatter.dateFormat = "YYYYMMdd-hhmmss"
 				
-			 // let fileName = "\(dateFormatter.string(from: Date()))"
-			let fileName = "WorldMap"
+			let fileName = "\(dateFormatter.string(from: Date()))"
+			
 			do {
 				let data = try NSKeyedArchiver.archivedData(withRootObject: map, requiringSecureCoding: true)
 				let savedMap = UserDefaults.standard
-				
-				savedMap.removeObject(forKey: "20210203-074918")
-				savedMap.removeObject(forKey: "20210203-071625")
-				savedMap.removeObject(forKey: "20210203-072111")
-				
 				savedMap.set(data, forKey: fileName)
 			} catch {
 				fatalError("Can't save map: \(error.localizedDescription)")
@@ -50,7 +46,7 @@ extension ARViewContainer {
 		let storedData = UserDefaults.standard
 		print("inside loadworldmap")
 		print(UserDefaults.standard.dictionaryRepresentation().keys)
-		if let data = storedData.data(forKey: "WorldMap") {
+		if let data = storedData.data(forKey: "20210204-043105") {
 	
 			print("getting storedData")
 			
