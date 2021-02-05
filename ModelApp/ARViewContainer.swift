@@ -76,14 +76,12 @@ struct ARViewContainer: UIViewRepresentable {
 		
 		arView.enableObjectRemoval()
 		
-		arView.scene.anchors.append(anchor)
+		arView.scene.addAnchor(anchor)
 		arView.session.run(config)
 		config.planeDetection = []
 		
 		
-		if loaded {
-			self.loadWorldMap()
-		}
+
 		
 		return arView
 		
@@ -121,6 +119,11 @@ struct ARViewContainer: UIViewRepresentable {
 			if saved {
 				self.saveWorldMap()
 			}
+		
+			if loaded {
+				self.loadWorldMap()
+			}
+		
 		}
 	}
 

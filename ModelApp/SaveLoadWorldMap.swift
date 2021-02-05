@@ -22,20 +22,20 @@ extension ARViewContainer {
 				return
 			}
 				
-			// let dateFormatter = DateFormatter()
-			// dateFormatter.dateFormat = "YYYYMMdd-hhmmss"
+			 let dateFormatter = DateFormatter()
+			 dateFormatter.dateFormat = "YYYYMMdd-hhmmss"
 				
-			// let fileName = "\(dateFormatter.string(from: Date()))"
+			 let fileName = "\(dateFormatter.string(from: Date()))"
 			
 			do {
 				let data = try NSKeyedArchiver.archivedData(withRootObject: map, requiringSecureCoding: true)
 				let savedMap = UserDefaults.standard
-				savedMap.set(data, forKey: "WorldMap")
+				savedMap.set(data, forKey: fileName)
 			} catch {
 				fatalError("Can't save map: \(error.localizedDescription)")
 			}
 			
-			print("WorldMap saved")
+			print("\(fileName) saved")
 			saved = false
 		}
 	}
@@ -43,8 +43,9 @@ extension ARViewContainer {
 	func loadWorldMap() {
 
 		let storedData = UserDefaults.standard
-
-		if let data = storedData.data(forKey: "WorldMap") {
+		print("inside loadworldmap")
+		print(UserDefaults.standard.dictionaryRepresentation().keys)
+		if let data = storedData.data(forKey: "20210204-022420") {
 	
 			print("getting storedData")
 			
@@ -61,6 +62,26 @@ extension ARViewContainer {
 			loaded = false
 		}
 	}
+	
+	
+//	func writeWorldMap(_ worldMap: ARWorldMap, to url: URL) throws {
+//
+//		let data = try NSKeyedArchiver.archivedData(withRootObject: worldMap,
+//													requiringSecureCoding: true)
+//		try data.write(to: url)
+//	}
+//
+//	func loadWorldMap(from url: URL) throws -> ARWorldMap {
+//
+//		let mapData = try Data(contentsOf: url)
+//		guard let worldMap = try NSKeyedUnarchiver.unarchivedObject(ofClass: ARWorldMap.self,
+//																	from: mapData)
+//		else {
+//			throw ARError(.invalidWorldMap)
+//		}
+//		return worldMap
+//	}
+	
 }
 
 
