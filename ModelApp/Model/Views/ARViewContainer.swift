@@ -191,7 +191,6 @@ struct ContentView : View {
 				}.padding(.trailing)
 
 			}
-
 		}
 	}
 }
