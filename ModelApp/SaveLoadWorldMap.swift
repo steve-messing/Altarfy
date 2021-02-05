@@ -25,11 +25,16 @@ extension ARViewContainer {
 			 let dateFormatter = DateFormatter()
 			 dateFormatter.dateFormat = "YYYYMMdd-hhmmss"
 				
-			 let fileName = "\(dateFormatter.string(from: Date()))"
-			
+			 // let fileName = "\(dateFormatter.string(from: Date()))"
+			let fileName = "WorldMap"
 			do {
 				let data = try NSKeyedArchiver.archivedData(withRootObject: map, requiringSecureCoding: true)
 				let savedMap = UserDefaults.standard
+				
+				savedMap.removeObject(forKey: "20210203-074918")
+				savedMap.removeObject(forKey: "20210203-071625")
+				savedMap.removeObject(forKey: "20210203-072111")
+				
 				savedMap.set(data, forKey: fileName)
 			} catch {
 				fatalError("Can't save map: \(error.localizedDescription)")
@@ -45,7 +50,7 @@ extension ARViewContainer {
 		let storedData = UserDefaults.standard
 		print("inside loadworldmap")
 		print(UserDefaults.standard.dictionaryRepresentation().keys)
-		if let data = storedData.data(forKey: "20210204-022420") {
+		if let data = storedData.data(forKey: "WorldMap") {
 	
 			print("getting storedData")
 			
