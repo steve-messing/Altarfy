@@ -80,9 +80,6 @@ struct ARViewContainer: UIViewRepresentable {
 		arView.session.run(config)
 		config.planeDetection = []
 		
-		
-
-		
 		return arView
 		
 	}
@@ -95,14 +92,14 @@ struct ARViewContainer: UIViewRepresentable {
 				
 				modelEntity.scale = SIMD3<Float>(0.001, 0.001, 0.001)
 				
-//				let anchorEntity = AnchorEntity()
-//				modelEntity.setParent(anchorEntity)
+				let parentEntity = AnchorEntity()
+				modelEntity.setParent(parentEntity)
 				
 				modelEntity.generateCollisionShapes(recursive: true)
 				arView.installGestures(for: modelEntity)
 				
-				anchor.addChild(modelEntity)
-				modelEntity.setPosition(SIMD3<Float>(0, 0.97, -0.3), relativeTo: anchor)
+				anchor.addChild(parentEntity)
+				parentEntity.setPosition(SIMD3<Float>(0, 0.97, -0.3), relativeTo: anchor)
 				
 				var placedModels: [Model] = []
 				placedModels.append(model)

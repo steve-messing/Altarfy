@@ -54,7 +54,7 @@ extension ARViewContainer {
 			   let worldMap = unarchiver as? ARWorldMap {
 				print("unarchiving...\(worldMap)")
 				config.initialWorldMap = worldMap
-				arView.session.run(config)
+				arView.session.run(config, options: [.resetTracking, .removeExistingAnchors])
 				print("successfully loaded")
 				loaded = false
 			}
