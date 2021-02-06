@@ -37,7 +37,8 @@ class SpotLighting: Entity, HasSpotLight {
 											   attenuationRadius: 9.0)
 		
 		self.shadow = SpotLightComponent.Shadow()
-		self.position.y = 1.2
+		self.position.y = 1
+		self.position.z = 0.5
 	}
 }
 
@@ -53,17 +54,20 @@ struct ARViewContainer: UIViewRepresentable {
 	@Binding var loaded: Bool
 		
 	let arView = ARView(frame: .zero)
-	let anchor = try! Experience.loadScene()
+	let anchor = try! Experience.loadBox()
 	let config = ARWorldTrackingConfiguration()
 	
 	let directionalLight = DirectionalLighting()
 	let spotLight = SpotLighting()
 	let lightAnchor = AnchorEntity()
 	
+	arView.session.delegate = self
+	
+	
 	// tap gestures
 	
 	func makeUIView(context: Context) -> ARView {
-		
+				
 		arView.scene.anchors.append(lightAnchor)
 		lightAnchor.addChild(spotLight)
 		
@@ -75,7 +79,7 @@ struct ARViewContainer: UIViewRepresentable {
 		}
 		
 		arView.enableObjectRemoval()
-		
+		 
 		arView.scene.addAnchor(anchor)
 		arView.session.run(config)
 		config.planeDetection = []
@@ -91,18 +95,21 @@ struct ARViewContainer: UIViewRepresentable {
 			if let modelEntity = model.modelEntity {
 				
 				modelEntity.scale = SIMD3<Float>(0.001, 0.001, 0.001)
-				
-				let parentEntity = AnchorEntity()
-				modelEntity.setParent(parentEntity)
-				
 				modelEntity.generateCollisionShapes(recursive: true)
 				arView.installGestures(for: modelEntity)
 				
+				
+				let parentEntity = AnchorEntity()
+				parentEntity.addChild(modelEntity)
+				
+				arView.scene.addAnchor(parentEntity)
 				anchor.addChild(parentEntity)
-				parentEntity.setPosition(SIMD3<Float>(0, 0.97, -0.3), relativeTo: anchor)
+				modelEntity.setPosition(SIMD3<Float>(0, 0.97, -0.3), relativeTo: anchor)
 				
 				var placedModels: [Model] = []
 				placedModels.append(model)
+				
+				print("\(placedModels)")
 				
 				}
 			}
@@ -119,10 +126,23 @@ struct ARViewContainer: UIViewRepresentable {
 		
 			if loaded {
 				self.loadWorldMap()
-			}
-		
 		}
 	}
+	
+	var mapSaveURL: URL = {
+		do {
+			return try FileManager.default
+				.url(for: .documentDirectory,
+					 in: .userDomainMask,
+					 appropriateFor: nil,
+					 create: true)
+				.appendingPathComponent("map.arexperience")
+		} catch {
+			fatalError("Can't get file save URL: \(error.localizedDescription)")
+		}
+	}()
+	
+}
 
 // double tap delete
 extension ARView {
@@ -140,57 +160,6 @@ extension ARView {
 		
 		if let entity = self.entity(at: location) {
 			entity.removeFromParent()
-		}
-	}
-}
-
-
-struct ContentView : View {
-	
-	@State private var saver = false
-	@State private var loader = false
-	
-	@State public var selectedModel: Model?
-	@State public var models: [Model] = {
-		let filemanager = FileManager.default
-		
-		guard let path = Bundle.main.resourcePath, let files = try?
-				filemanager.contentsOfDirectory(atPath: path)
-		else {
-			return []
-		}
-		
-		var availableModels: [Model] = []
-		
-		for filename in files where filename.hasSuffix("usdz") {
-			let modelName = filename.replacingOccurrences(of: ".usdz", with: "")
-			let model = Model(modelName: modelName)
-			availableModels.append(model)
-		}
-		return availableModels
-	}()
-	
-	var body: some View { // display UI buttons and list
-		VStack {
-			
-			ZStack(alignment: .bottom) {
-				
-				ARViewContainer(selectedModel: self.$selectedModel, saved: $saver, loaded: $loader).edgesIgnoringSafeArea(.all)
-				ModelPickerView(selectedModel: self.$selectedModel, models: self.$models)
-			}
-			
-				HStack(alignment: .top) {
-				Button(action: { self.loader.toggle() }) {
-					Text("Load")
-				}.padding(.leading)
-				
-				Spacer()
-				
-				Button(action: { self.saver.toggle() }) {
-					Text("Save")
-				}.padding(.trailing)
-
-			}
 		}
 	}
 }
