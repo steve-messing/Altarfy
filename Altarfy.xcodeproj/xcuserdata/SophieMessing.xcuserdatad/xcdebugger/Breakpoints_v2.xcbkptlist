@@ -30,8 +30,8 @@
             filePath = "ModelApp/SaveLoadWorldMap.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "18"
-            endingLineNumber = "18"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
             landmarkName = "saveWorldMap()"
             landmarkType = "7">
             <Locations>

@@ -13,6 +13,7 @@ import RealityKit
 
 extension ARViewContainer {
 
+	
 	func saveWorldMap() {
 		loaded = false
 		print("in saveWorldMap")
@@ -23,45 +24,70 @@ extension ARViewContainer {
 				return
 			}
 				
-			 let dateFormatter = DateFormatter()
-			 dateFormatter.dateFormat = "YYYYMMdd-hhmmss"
-				
-			let fileName = "\(dateFormatter.string(from: Date()))"
+//			 let dateFormatter = DateFormatter()
+//			 dateFormatter.dateFormat = "YYYYMMdd-hhmmss"
+//
+//			let fileName = "\(dateFormatter.string(from: Date()))"
 			
 			do {
 				let data = try NSKeyedArchiver.archivedData(withRootObject: map, requiringSecureCoding: true)
-				let savedMap = UserDefaults.standard
-				savedMap.set(data, forKey: fileName)
+				try data.write(to: mapSaveURL, options: [.atomic])
+
+				// savedMap.set(data, forKey: fileName)
 			} catch {
 				fatalError("Can't save map: \(error.localizedDescription)")
 			}
 			
-			print("\(fileName) saved")
+			print("saved \(mapSaveURL)")
 			saved = false
 		}
 	}
 	
 	func loadWorldMap() {
 
-		let storedData = UserDefaults.standard
-		print("inside loadworldmap")
-		print(UserDefaults.standard.dictionaryRepresentation().keys)
-		if let data = storedData.data(forKey: "20210204-043105") {
-	
-			print("getting storedData")
+		
+		
+		let worldMap: ARWorldMap = {
+			guard let data = try? Data(contentsOf: mapSaveURL)
 			
-			if let unarchiver = try? NSKeyedUnarchiver.unarchivedObject(ofClasses: [ARWorldMap.classForKeyedUnarchiver()], from: data),
-			   let worldMap = unarchiver as? ARWorldMap {
-				print("unarchiving...\(worldMap)")
-				config.initialWorldMap = worldMap
-				arView.session.run(config, options: [.resetTracking, .removeExistingAnchors])
-				print("successfully loaded")
-				loaded = false
+			else {
+				fatalError("No map data found")
 			}
-		} else {
-			print("unable to load data!")
-			loaded = false
-		}
+			
+			do {
+				guard let worldMap = try NSKeyedUnarchiver.unarchivedObject(ofClass: ARWorldMap.self, from: data)
+				else { fatalError("No ARWorldMap in archive.") }
+				print("unarchiving \(worldMap)")
+				return worldMap
+			
+			} catch {
+				fatalError("Can't unarchive ARWorldMap from file data: \(error)")
+			}
+		}()
+		
+		
+		config.initialWorldMap = worldMap
+		arView.session.run(config)
+		
+//		let storedData = UserDefaults.standard
+//		print("inside loadworldmap")
+//		print(UserDefaults.standard.dictionaryRepresentation().keys)
+//		if let data = storedData.data(forKey: "20210204-043105") {
+//
+//			print("getting storedData")
+//
+//			if let unarchiver = try? NSKeyedUnarchiver.unarchivedObject(ofClasses: [ARWorldMap.classForKeyedUnarchiver()], from: data),
+//			   let worldMap = unarchiver as? ARWorldMap {
+//				print("unarchiving...\(worldMap)")
+//				config.initialWorldMap = worldMap
+//				arView.session.run(config)
+//				print("successfully loaded")
+//				loaded = false
+//			}
+//		} else {
+//			print("unable to load data!")
+//			loaded = false
+//		}
 	}
 	
 	
