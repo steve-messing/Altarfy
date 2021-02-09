@@ -108,19 +108,12 @@ struct ARViewContainer: UIViewRepresentable {
 				modelEntity.scale = SIMD3<Float>(0.001, 0.001, 0.001)
 				modelEntity.generateCollisionShapes(recursive: true)
 				arView.installGestures(for: modelEntity)
-//
-//				let parentEntity = AnchorEntity()
-//				modelEntity.setParent(parentEntity)
-//
-//				print("adding model to scene")
-//				print(parentEntity)
-//
-				modelEntity.setPosition(SIMD3<Float>(0, 0.97, -0.3), relativeTo: boxAnchor)
-//				anchor.addChild(parentEntity)
-//				arView.scene.anchors.append(parentEntity)
 
 				let anchorEntity = AnchorEntity(anchor: virtualObjectAnchor)
+				modelEntity.setPosition(SIMD3<Float>(0, 0.97, 0), relativeTo: boxAnchor)
+
 				anchorEntity.addChild(modelEntity)
+				boxAnchor.addChild(modelEntity)
 				arView.scene.addAnchor(anchorEntity)
 
 				// Add ARAnchor into ARView.session, which can be persisted in WorldMap
@@ -162,7 +155,6 @@ struct ARViewContainer: UIViewRepresentable {
 
 
 extension ARView {
-
 	
 	func addAnchorEntityToScene(anchor: ARAnchor) {
 
@@ -179,12 +171,11 @@ extension ARView {
 		print(model.modelName)
 
 		if let modelEntity = model.modelEntity {
-//			modelEntity.scale = SIMD3<Float>(0.001, 0.001, 0.001)
-//			modelEntity.generateCollisionShapes(recursive: true)
-//			self.installGestures(for: modelEntity)
-//			modelEntity.position.y = 0.97
-//			modelEntity.position.z = -0.3
-////			modelEntity.setPosition(SIMD3<Float>(0, 0.97, -0.3), relativeTo: ARViewContainer.boxAnchor)
+			modelEntity.scale = SIMD3<Float>(0.001, 0.001, 0.001)
+			modelEntity.generateCollisionShapes(recursive: true)
+			self.installGestures(for: modelEntity)
+			modelEntity.position.y = 0.97
+			modelEntity.position.z = -0.3
 
 			let anchorEntity = AnchorEntity(anchor: anchor)
 			anchorEntity.addChild(modelEntity)
@@ -232,6 +223,7 @@ extension ARView {
 extension ARView: ARSessionDelegate { //session:DidAdd
 
 	public func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
+		
 		print("---starting the session---")
 		for anchor in anchors {
 			addAnchorEntityToScene(anchor: anchor)
