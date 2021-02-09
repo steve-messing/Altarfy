@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftUI
+import CoreData
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -44,6 +45,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		// Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 	}
 
+	
+	// MARK: CoreData NSPersistentContainer
+	
+	lazy var persistentContainer: NSPersistentContainer = {
+		let container = NSPersistentContainer(name: "DataModel")
+		container.loadPersistentStores { description, error in
+			if let error = error {
+				fatalError("Unable to load persistent stores: \(error)")
+			}
+		}
+		return container
+	}()
+	
 
 }
 

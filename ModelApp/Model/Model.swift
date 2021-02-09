@@ -18,6 +18,7 @@ class Model {
 	var modelName: String
 	var image: UIImage
 	var modelEntity: ModelEntity?
+//	var anchorEntity: AnchorEntity?
 	var scaleCompensation: Float
 	private var cancellable: AnyCancellable? = nil
 	
