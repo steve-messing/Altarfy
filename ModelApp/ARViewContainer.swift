@@ -113,7 +113,7 @@ struct ARViewContainer: UIViewRepresentable {
 				modelEntity.setPosition(SIMD3<Float>(0, 0.97, 0), relativeTo: boxAnchor)
 
 				anchorEntity.addChild(modelEntity)
-				boxAnchor.addChild(modelEntity)
+				boxAnchor.addChild(anchorEntity)
 				arView.scene.addAnchor(anchorEntity)
 
 				// Add ARAnchor into ARView.session, which can be persisted in WorldMap
@@ -161,9 +161,9 @@ extension ARView {
 		print("in addAnchorEntityToScene func")
 		print("adding \(anchor.name ?? "anchor name") to scene as ARAnchor")
 
-//		guard anchor.name == "Stone_06" else {
-//			return
-//		}
+		guard anchor.name != nil else {
+			return
+		}
 
 		// Add modelEntity and anchorEntity into the scene for rendering
 		let model = Model(modelName: anchor.name ?? "Stone_06")
@@ -174,8 +174,6 @@ extension ARView {
 			modelEntity.scale = SIMD3<Float>(0.001, 0.001, 0.001)
 			modelEntity.generateCollisionShapes(recursive: true)
 			self.installGestures(for: modelEntity)
-			modelEntity.position.y = 0.97
-			modelEntity.position.z = -0.3
 
 			let anchorEntity = AnchorEntity(anchor: anchor)
 			anchorEntity.addChild(modelEntity)
