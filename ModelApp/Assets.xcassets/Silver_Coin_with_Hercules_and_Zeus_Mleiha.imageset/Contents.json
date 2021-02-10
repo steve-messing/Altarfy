@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "Silver_Coin_with_Hercules_and_Zeus_Mleiha.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

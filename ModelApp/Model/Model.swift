@@ -18,6 +18,7 @@ class Model {
 	var modelName: String
 	var image: UIImage
 	var modelEntity: ModelEntity?
+//	var anchorEntity: AnchorEntity?
 	var scaleCompensation: Float
 	private var cancellable: AnyCancellable? = nil
 	
@@ -27,13 +28,12 @@ class Model {
 		let filename = modelName + ".usdz"
 		self.scaleCompensation = scaleCompensation	
 		self.image = UIImage(named: modelName) ?? UIImage(systemName: "photo")!
-		
-		self.cancellable = ModelEntity.loadModelAsync(named: filename)
-			.sink(receiveCompletion: { loadCompletion in
-				// print("unable to load modelEntity for modelName \(self.modelName)")
-			}, receiveValue: { modelEntity in
-				self.modelEntity = modelEntity
-				print("successfully loaded modelEntity for modelName \(self.modelName)")
-			})
+		self.modelEntity = try? ModelEntity.loadModel(named: filename)
+//			.sink(receiveCompletion: { loadCompletion in
+//				// print("unable to load modelEntity for modelName \(self.modelName)")
+//			}, receiveValue: { modelEntity in
+//				self.modelEntity = modelEntity
+//				print("successfully loaded modelEntity for modelName \(self.modelName)")
+//			})
 	}
 }

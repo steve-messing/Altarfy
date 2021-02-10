@@ -12,17 +12,21 @@ import RealityKit
 
 
 extension ARViewContainer {
-
 	
 	func saveWorldMap() {
-		loaded = false
+		
+		let mapSaveURL = generateMapSaveURL()
+		
 		print("in saveWorldMap")
-		arView.session.getCurrentWorldMap { worldMap, _ in
+		arView.session.getCurrentWorldMap { worldMap, error in
 			print("in callback")
 			guard let map = worldMap else {
 				print("returning because no world map")
+				print(error!.localizedDescription)
 				return
 			}
+			
+			print(map.anchors)
 				
 //			 let dateFormatter = DateFormatter()
 //			 dateFormatter.dateFormat = "YYYYMMdd-hhmmss"
@@ -32,11 +36,11 @@ extension ARViewContainer {
 			do {
 				let data = try NSKeyedArchiver.archivedData(withRootObject: map, requiringSecureCoding: true)
 				try data.write(to: mapSaveURL, options: [.atomic])
-
-				// savedMap.set(data, forKey: fileName)
+				print("\(map)")
 			} catch {
 				fatalError("Can't save map: \(error.localizedDescription)")
 			}
+			
 			
 			print("saved \(mapSaveURL)")
 			saved = false
@@ -44,11 +48,15 @@ extension ARViewContainer {
 	}
 	
 	func loadWorldMap() {
+		
+		let mapSaveURL = generateMapSaveURL()
 
-		
-		
 		let worldMap: ARWorldMap = {
+						
+			print("loading from \(mapSaveURL)")
+			
 			guard let data = try? Data(contentsOf: mapSaveURL)
+			
 			
 			else {
 				fatalError("No map data found")
@@ -57,7 +65,7 @@ extension ARViewContainer {
 			do {
 				guard let worldMap = try NSKeyedUnarchiver.unarchivedObject(ofClass: ARWorldMap.self, from: data)
 				else { fatalError("No ARWorldMap in archive.") }
-				print("unarchiving \(worldMap)")
+				print("unarchiving \(worldMap.anchors)")
 				return worldMap
 			
 			} catch {
@@ -65,50 +73,11 @@ extension ARViewContainer {
 			}
 		}()
 		
-		
+		print("printing anchors from loading")
+		print(worldMap.anchors)
 		config.initialWorldMap = worldMap
-		arView.session.run(config)
-		
-//		let storedData = UserDefaults.standard
-//		print("inside loadworldmap")
-//		print(UserDefaults.standard.dictionaryRepresentation().keys)
-//		if let data = storedData.data(forKey: "20210204-043105") {
-//
-//			print("getting storedData")
-//
-//			if let unarchiver = try? NSKeyedUnarchiver.unarchivedObject(ofClasses: [ARWorldMap.classForKeyedUnarchiver()], from: data),
-//			   let worldMap = unarchiver as? ARWorldMap {
-//				print("unarchiving...\(worldMap)")
-//				config.initialWorldMap = worldMap
-//				arView.session.run(config)
-//				print("successfully loaded")
-//				loaded = false
-//			}
-//		} else {
-//			print("unable to load data!")
-//			loaded = false
-//		}
+		arView.session.run(config, options: [.resetTracking, .removeExistingAnchors])
 	}
-	
-	
-//	func writeWorldMap(_ worldMap: ARWorldMap, to url: URL) throws {
-//
-//		let data = try NSKeyedArchiver.archivedData(withRootObject: worldMap,
-//													requiringSecureCoding: true)
-//		try data.write(to: url)
-//	}
-//
-//	func loadWorldMap(from url: URL) throws -> ARWorldMap {
-//
-//		let mapData = try Data(contentsOf: url)
-//		guard let worldMap = try NSKeyedUnarchiver.unarchivedObject(ofClass: ARWorldMap.self,
-//																	from: mapData)
-//		else {
-//			throw ARError(.invalidWorldMap)
-//		}
-//		return worldMap
-//	}
-	
 }
 
 

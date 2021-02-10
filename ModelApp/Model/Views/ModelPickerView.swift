@@ -11,13 +11,10 @@ import RealityKit
 import ARKit
 
 struct ModelPickerView: View {
+	
 	@Binding var selectedModel: Model?
-	//	@Binding var modelConfirmedForPlacement: Model?
-	
 	@Binding var models: [Model]
-	
-	// @ObservedObject var thumbnailGenerator = ThumbnailGenerator()
-	
+		
 	var body: some View {
 		ScrollView(.horizontal, showsIndicators: false) {
 			HStack(spacing: 30) {
