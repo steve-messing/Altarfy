@@ -28,7 +28,7 @@ struct NavList: View {
 						.resizable()
 						.padding(.all, 8.0)
 						.frame(width: 50, height: 50)
-					Text("\(file)")
+					Text("\(file.pathExtension)")
 					Spacer()
 				}
 			}
