@@ -39,7 +39,6 @@ class SpotLighting: Entity, HasSpotLight {
 		
 		self.shadow = SpotLightComponent.Shadow()
 		self.position.y = 1
-		self.position.z = -0.5
 	}
 }
 
@@ -84,18 +83,13 @@ struct ARViewContainer: UIViewRepresentable {
 		arView.scene.addAnchor(arView.box)
 		arView.session.delegate = arView
 		arView.session.run(config)
-		config.planeDetection = []
+		config.planeDetection = [.horizontal]
 		
 		
 		
 		if let saveUrl = url {
 			self.loadWorldMap(url: saveUrl)
 		}
-		
-		// load if arrived from load in main navigation
-		// load the correct scene
-		// else return fresh arview
-		
 		
 		return arView
 		
@@ -159,11 +153,11 @@ extension CustomARView {
 		}
 
 		// Add modelEntity and anchorEntity into the scene for rendering
-		let model = Model(modelName: anchor.name ?? "Stone_06")
+		
 
-		print(model.modelName)
+//		print(model.modelName)
 
-		if let modelEntity = model.modelEntity {
+		if let modelEntity = try? ModelEntity.loadModel(named: anchor.name ?? "Stone_06") {
 			
 			modelEntity.scale = SIMD3<Float>(0.001, 0.001, 0.001)
 			modelEntity.generateCollisionShapes(recursive: true)

@@ -28,7 +28,7 @@ class Model {
 		let filename = modelName + ".usdz"
 		self.scaleCompensation = scaleCompensation	
 		self.image = UIImage(named: modelName) ?? UIImage(systemName: "photo")!
-		self.modelEntity = try? ModelEntity.loadModel(named: filename)
+		// self.modelEntity = try? ModelEntity.loadModel(named: filename)
 //			.sink(receiveCompletion: { loadCompletion in
 //				// print("unable to load modelEntity for modelName \(self.modelName)")
 //			}, receiveValue: { modelEntity in
