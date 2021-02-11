@@ -16,6 +16,7 @@ extension ARViewContainer {
 	func saveWorldMap() {
 		
 		let mapSaveURL = generateMapSaveURL()
+		print(mapSaveURL)
 		
 		print("in saveWorldMap")
 		arView.session.getCurrentWorldMap { worldMap, error in
@@ -77,6 +78,7 @@ extension ARViewContainer {
 		print(worldMap.anchors)
 		config.initialWorldMap = worldMap
 		arView.session.run(config, options: [.resetTracking, .removeExistingAnchors])
+		loaded = false
 	}
 }
 

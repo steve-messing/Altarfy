@@ -25,7 +25,7 @@ struct Navigation: View {
 							}
 						.padding()
 						}
-					LandmarkList()
+					NavList()
 				}
 				.navigationTitle("My Altars")
 			}
