@@ -13,6 +13,7 @@
 		5128BC5425C0D43D00372271 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5128BC5325C0D43D00372271 /* Assets.xcassets */; };
 		5128BC5725C0D43D00372271 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5128BC5625C0D43D00372271 /* Preview Assets.xcassets */; };
 		5128BC8625C0F59400372271 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5128BC8525C0F59400372271 /* Model.swift */; };
+		51A2A0F825D4AC90008D7DC3 /* CustomARView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A2A0F725D4AC90008D7DC3 /* CustomARView.swift */; };
 		51C48BAB25CB59DD00656D1F /* SaveLoadWorldMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C48BAA25CB59DD00656D1F /* SaveLoadWorldMap.swift */; };
 		51CE16DD25C7B6F2006D0E3C /* ARViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CE16DC25C7B6F2006D0E3C /* ARViewContainer.swift */; };
 		51CE16E025C7B70B006D0E3C /* ModelPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CE16DF25C7B70B006D0E3C /* ModelPickerView.swift */; };
@@ -55,6 +56,7 @@
 		5128BC5625C0D43D00372271 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5128BC5825C0D43D00372271 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5128BC8525C0F59400372271 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		51A2A0F725D4AC90008D7DC3 /* CustomARView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomARView.swift; sourceTree = "<group>"; };
 		51C48BAA25CB59DD00656D1F /* SaveLoadWorldMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveLoadWorldMap.swift; sourceTree = "<group>"; };
 		51CE16DC25C7B6F2006D0E3C /* ARViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewContainer.swift; sourceTree = "<group>"; };
 		51CE16DF25C7B70B006D0E3C /* ModelPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelPickerView.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 		5128BC4C25C0D43B00372271 /* ModelApp */ = {
 			isa = PBXGroup;
 			children = (
+				51A2A0F725D4AC90008D7DC3 /* CustomARView.swift */,
 				51C48BB425CB8A0E00656D1F /* Model */,
 				51D2A60825CD0818002A3E93 /* Views */,
 				5128BC5F25C0D53200372271 /* 3DModels */,
@@ -297,6 +300,7 @@
 				51D2A60F25CD0896002A3E93 /* LandmarkList.swift in Sources */,
 				5128BC8625C0F59400372271 /* Model.swift in Sources */,
 				51D2A61925CD0918002A3E93 /* LoadLandmarkModelData.swift in Sources */,
+				51A2A0F825D4AC90008D7DC3 /* CustomARView.swift in Sources */,
 				51C48BAB25CB59DD00656D1F /* SaveLoadWorldMap.swift in Sources */,
 				51D2A61125CD0896002A3E93 /* LandmarkRow.swift in Sources */,
 				51CE16DD25C7B6F2006D0E3C /* ARViewContainer.swift in Sources */,
