@@ -80,10 +80,9 @@ struct ARViewContainer: UIViewRepresentable {
 		arView.enableObjectRemoval()
 		arView.playAnimation()
 		 
-		arView.scene.addAnchor(arView.box)
+		arView.scene.anchors.append(arView.box)
 		arView.session.delegate = arView
 		arView.session.run(config)
-		config.planeDetection = [.horizontal]
 		
 		
 		
@@ -144,7 +143,7 @@ struct ARViewContainer: UIViewRepresentable {
 extension CustomARView {
 		
 	func addAnchorEntityToScene(anchor: ARAnchor) {
-		
+				
 		print("in addAnchorEntityToScene func")
 		print("adding \(anchor.name ?? "anchor name") to scene as ARAnchor")
 
@@ -153,9 +152,6 @@ extension CustomARView {
 		}
 
 		// Add modelEntity and anchorEntity into the scene for rendering
-		
-
-//		print(model.modelName)
 
 		if let modelEntity = try? ModelEntity.loadModel(named: anchor.name ?? "Stone_06") {
 			
@@ -164,10 +160,10 @@ extension CustomARView {
 			self.installGestures(for: modelEntity)
 
 			let anchorEntity = AnchorEntity(anchor: anchor)
-			anchorEntity.addChild(modelEntity)
 			self.box.addChild(anchorEntity)
-			modelEntity.setPosition(SIMD3<Float>(0, 0.97, 0), relativeTo: self.box)
-			self.scene.addAnchor(anchorEntity)
+			anchorEntity.addChild(modelEntity)
+			anchorEntity.setPosition(SIMD3<Float>(0, 0.97, -0.3), relativeTo: self.box)
+			// modelEntity.setPosition(SIMD3<Float>(0, 0.97, 0), relativeTo: self.box)
 		} else {
 			print("DEBUG: Unable to add modelEntity to scene in Render")
 		}
@@ -208,7 +204,7 @@ extension CustomARView {
 	}
 }
 
-extension CustomARView: ARSessionDelegate { //session:DidAdd
+extension CustomARView: ARSessionDelegate {
 
 	public func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
 		
@@ -218,6 +214,7 @@ extension CustomARView: ARSessionDelegate { //session:DidAdd
 		}
 	}
 }
+
 
 extension CustomARView: ARCoachingOverlayViewDelegate {
 	func addCoaching() {
