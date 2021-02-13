@@ -12,19 +12,25 @@ struct NavList: View {
 	@State var files: [URL] = []
 
 	var body: some View {
-		List(files, id: \.self) { file in
-			NavigationLink(destination: ContentView(url: file)) {
-				HStack {
-					Image(systemName: "square.and.pencil")
-						.resizable()
-						.padding(.all, 8.0)
-						.frame(width: 50, height: 50)
-					Text("\(file.pathExtension)")
-					Spacer()
+		List {
+			ForEach(files, id: \.self) { file in
+				NavigationLink(destination: ContentView(url: file)) {
+					HStack {
+						Image(systemName: "square.and.pencil")
+							.resizable()
+							.padding(.all, 8.0)
+							.frame(width: 50, height: 50)
+						Text("\(file.pathExtension)")
+						Spacer()
+					}
 				}
-			}
+			}.onDelete(perform: delete)
 		}.onAppear(perform: updateList)
     }
+	
+	func delete(at offsets: IndexSet) {
+		files.remove(atOffsets: offsets)
+	}
 	
 	func updateList() {
 		print("updating list")
