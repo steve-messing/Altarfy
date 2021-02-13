@@ -48,9 +48,9 @@ extension ARViewContainer {
 		}
 	}
 	
-	func loadWorldMap() {
+	func loadWorldMap(url: URL) {
 		
-		let mapSaveURL = generateMapSaveURL()
+		let mapSaveURL = url
 
 		let worldMap: ARWorldMap = {
 						
@@ -78,7 +78,6 @@ extension ARViewContainer {
 		print(worldMap.anchors)
 		config.initialWorldMap = worldMap
 		arView.session.run(config, options: [.resetTracking, .removeExistingAnchors])
-		loaded = false
 	}
 }
 

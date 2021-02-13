@@ -12,8 +12,12 @@ import ARKit
 
 struct ContentView : View {
 	
+	
+	public var url: URL?
+
+	@State var showsAlert = false
+	
 	@State private var saver = false
-	@State private var loader = false
 	
 	@State public var selectedModel: Model?
 	@State public var models: [Model] = {
@@ -40,21 +44,17 @@ struct ContentView : View {
 			
 			ZStack(alignment: .bottom) {
 				
-				ARViewContainer(selectedModel: self.$selectedModel, saved: $saver, loaded: $loader).edgesIgnoringSafeArea(.all)
+				ARViewContainer(url: url, selectedModel: self.$selectedModel, saved: $saver).edgesIgnoringSafeArea(.all)
 				ModelPickerView(selectedModel: self.$selectedModel, models: self.$models)
 			}
 			
-			HStack(alignment: .top) {
-				Button(action: { self.loader.toggle() }) {
-					Text("Load")
-				}.padding(.leading)
+			HStack() {
 				
 				Spacer()
 				
 				Button(action: { self.saver.toggle() }) {
 					Text("Save")
 				}.padding(.trailing)
-				
 			}
 		}
 	}

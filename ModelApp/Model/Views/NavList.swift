@@ -9,20 +9,11 @@ import SwiftUI
 
 struct NavList: View {
 	
-	var files: [URL] = {
-		do {
-			let documentsURL = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-			let docs = try FileManager.default.contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: nil, options:  .skipsHiddenFiles)
-			return docs
-		} catch {
-			print("unable to get files!")
-			return []
-		}
-	}()
-		
+	@State var files: [URL] = []
+
 	var body: some View {
 		List(files, id: \.self) { file in
-			NavigationLink(destination: ContentView()) {
+			NavigationLink(destination: ContentView(url: file)) {
 				HStack {
 					Image(systemName: "square.and.pencil")
 						.resizable()
@@ -32,8 +23,19 @@ struct NavList: View {
 					Spacer()
 				}
 			}
-		}
+		}.onAppear(perform: updateList)
     }
+	
+	func updateList() {
+		print("updating list")
+		do {
+			let documentsURL = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+			let docs = try FileManager.default.contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: nil, options:  .skipsHiddenFiles)
+			self.files = docs
+		} catch {
+			print("unable to get files!")
+		}
+	}
 }
 
 struct NavList_Previews: PreviewProvider {

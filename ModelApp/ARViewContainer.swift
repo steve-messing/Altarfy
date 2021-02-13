@@ -39,7 +39,6 @@ class SpotLighting: Entity, HasSpotLight {
 		
 		self.shadow = SpotLightComponent.Shadow()
 		self.position.y = 1
-		self.position.z = -0.5
 	}
 }
 
@@ -49,12 +48,11 @@ struct ARViewContainer: UIViewRepresentable {
 	
 	// typealias UIViewType = ARView
 	
+	let url: URL?
+	
 	@Binding var selectedModel: Model?
 	
-	@Binding var saved: Bool
-	@Binding var loaded: Bool
-		
-	
+	@Binding var saved: Bool		
 	
 	let arView = CustomARView(frame: .zero)
 	let config = ARWorldTrackingConfiguration()
@@ -82,17 +80,15 @@ struct ARViewContainer: UIViewRepresentable {
 		arView.enableObjectRemoval()
 		arView.playAnimation()
 		 
-		arView.scene.addAnchor(arView.box)
+		arView.scene.anchors.append(arView.box)
 		arView.session.delegate = arView
 		arView.session.run(config)
-		config.planeDetection = []
 		
 		
 		
-		// load if arrived from load in main navigation
-		// load the correct scene
-		// else return fresh arview
-		
+		if let saveUrl = url {
+			self.loadWorldMap(url: saveUrl)
+		}
 		
 		return arView
 		
@@ -103,55 +99,31 @@ struct ARViewContainer: UIViewRepresentable {
 		print("in updateUIView")
 		
 		if let model = self.selectedModel {
-		
-			if let modelEntity = model.modelEntity {
 			
-				let virtualObjectAnchor = ARAnchor(name: model.modelName, transform: simd_float4x4(
-								[1.0, 0.0, 0.0, 0.0],
-								[0.0, 1.0, 0.0, 0.0],
-								[0.0, 0.0, 1.0, 0.0],
-								[0.0, 0.0, 0.0, 1.0]))
-			
-			
-//				modelEntity.scale = SIMD3<Float>(0.001, 0.001, 0.001)
-//				modelEntity.generateCollisionShapes(recursive: true)
-//				arView.installGestures(for: modelEntity)
-//
-//				let anchorEntity = AnchorEntity(anchor: virtualObjectAnchor)
-//				modelEntity.setPosition(SIMD3<Float>(0, 0.97, 0), relativeTo: boxAnchor)
-//
-//				anchorEntity.addChild(modelEntity)
-//				boxAnchor.addChild(anchorEntity)
-//				arView.scene.addAnchor(anchorEntity)
+			let virtualObjectAnchor = ARAnchor(name: model.modelName, transform: simd_float4x4(
+							[1.0, 0.0, 0.0, 0.0],
+							[0.0, 1.0, 0.0, 0.0],
+							[0.0, 0.0, 1.0, 0.0],
+							[0.0, 0.0, 0.0, 1.0]))
 
-				// Add ARAnchor into ARView.session, which can be persisted in WorldMap
-				arView.session.add(anchor: virtualObjectAnchor)
-				}
-			}
-							
-			// print(arView.scene.anchors)
-		
-			DispatchQueue.main.async {
-				self.selectedModel = nil
-			}
-			
-			print("saved is \(saved)")
-			print("loaded is \(loaded)")
-		
-			if saved {
-				self.saveWorldMap()
-			}
-		
-			if loaded {
-				self.loadWorldMap()
-			}
+			// Add ARAnchor into ARView.session, which can be persisted in WorldMap
+			arView.session.add(anchor: virtualObjectAnchor)
 		}
+	
+		DispatchQueue.main.async {
+			self.selectedModel = nil
+		}
+	
+		if saved {
+			self.saveWorldMap()
+		}
+	}
 	
 	func generateMapSaveURL() -> URL {
 		
-		// filename = datetime
-		// prompt user to enter filename
-		// .appendingPathComponent(filename)
+		let dateFormatter = DateFormatter()
+		dateFormatter.dateFormat = "MMM-d-yyyy-h-mm-a"
+		let filename = dateFormatter.string(from: Date())
 		
 		do {
 			return try FileManager.default
@@ -159,7 +131,7 @@ struct ARViewContainer: UIViewRepresentable {
 					 in: .userDomainMask,
 					 appropriateFor: nil,
 					 create: true)
-				.appendingPathComponent("map.arexperience") // pass in filename as variable
+				.appendingPathComponent("map.Altar-\(filename)") // pass in filename as variable
 		} catch {
 			fatalError("Can't get file save URL: \(error.localizedDescription)")
 		}
@@ -170,9 +142,7 @@ struct ARViewContainer: UIViewRepresentable {
 extension CustomARView {
 		
 	func addAnchorEntityToScene(anchor: ARAnchor) {
-
-//		let boxAnchor = try! Experience.loadBox()
-		
+				
 		print("in addAnchorEntityToScene func")
 		print("adding \(anchor.name ?? "anchor name") to scene as ARAnchor")
 
@@ -180,49 +150,19 @@ extension CustomARView {
 			return
 		}
 
-		// scope boxAnchor
-		// positioning with simd_float4x4
-		
 		// Add modelEntity and anchorEntity into the scene for rendering
-		let model = Model(modelName: anchor.name ?? "Stone_06")
 
-		print(model.modelName)
-
-		if let modelEntity = model.modelEntity {
-			
-			
-			
-//
-//			let virtualObjectAnchor = ARAnchor(name: model.modelName, transform: simd_float4x4(
-//												[1.0, 0.0, 0.0, 0.0],
-//												[0.0, 1.0, 0.0, 0.0],
-//												[0.0, 0.0, 1.0, 0.0],
-//												[0.0, 0.0, 0.0, 1.0]))
-//
-//
-//			modelEntity.scale = SIMD3<Float>(0.001, 0.001, 0.001)
-//			modelEntity.generateCollisionShapes(recursive: true)
-//			arView.installGestures(for: modelEntity)
-//
-//			let anchorEntity = AnchorEntity(anchor: virtualObjectAnchor)
-//			modelEntity.setPosition(SIMD3<Float>(0, 0.97, 0), relativeTo: boxAnchor)
-//
-//			anchorEntity.addChild(modelEntity)
-//			boxAnchor.addChild(anchorEntity)
-//			arView.scene.addAnchor(anchorEntity)
-			
-			
-			
+		if let modelEntity = try? ModelEntity.loadModel(named: anchor.name ?? "Stone_06") {
 			
 			modelEntity.scale = SIMD3<Float>(0.001, 0.001, 0.001)
 			modelEntity.generateCollisionShapes(recursive: true)
 			self.installGestures(for: modelEntity)
-			modelEntity.setPosition(SIMD3<Float>(0, 0.97, 0), relativeTo: self.box)
 
 			let anchorEntity = AnchorEntity(anchor: anchor)
-			anchorEntity.addChild(modelEntity)
 			self.box.addChild(anchorEntity)
-			self.scene.addAnchor(anchorEntity)
+			anchorEntity.addChild(modelEntity)
+			anchorEntity.setPosition(SIMD3<Float>(0, 0.97, -0.3), relativeTo: self.box)
+			// modelEntity.setPosition(SIMD3<Float>(0, 0.97, 0), relativeTo: self.box)
 		} else {
 			print("DEBUG: Unable to add modelEntity to scene in Render")
 		}
@@ -263,7 +203,7 @@ extension CustomARView {
 	}
 }
 
-extension CustomARView: ARSessionDelegate { //session:DidAdd
+extension CustomARView: ARSessionDelegate {
 
 	public func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
 		
@@ -273,6 +213,7 @@ extension CustomARView: ARSessionDelegate { //session:DidAdd
 		}
 	}
 }
+
 
 extension CustomARView: ARCoachingOverlayViewDelegate {
 	func addCoaching() {
