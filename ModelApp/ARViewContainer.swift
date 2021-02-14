@@ -32,13 +32,13 @@ class SpotLighting: Entity, HasSpotLight {
 		super.init()
 		
 		self.light = SpotLightComponent(color: .white,
-											   intensity: 20000,
+											   intensity: 10000,
 											   innerAngleInDegrees: 70,
 											   outerAngleInDegrees: 120,
 											   attenuationRadius: 9.0)
 		
 		self.shadow = SpotLightComponent.Shadow()
-		self.position.y = 1
+		self.position.y = 1.3
 	}
 }
 
@@ -66,7 +66,7 @@ struct ARViewContainer: UIViewRepresentable {
 				
 		// add altar to scene with ARAnchor for stability
 		
-		let altarARAnchor = ARPlaneAnchor(name: "AltarARAnchor", transform: simd_float4x4(
+		let altarARAnchor = ARAnchor(name: "AltarARAnchor", transform: simd_float4x4(
 										[1.0, 0.0, 0.0, 0.0],
 										[0.0, 1.0, 0.0, 0.0],
 										[0.0, 0.0, 1.0, 0.0],
@@ -175,7 +175,7 @@ extension CustomARView {
 //			let anchorEntity = AnchorEntity(anchor: anchor)
 //			anchorEntity.addChild(modelEntity)
 			self.altar.addChild(modelEntity)
-			modelEntity.setPosition(SIMD3<Float>(0, 0.5, 0), relativeTo: self.altar)
+			modelEntity.setPosition(SIMD3<Float>(0, 0.97, 0), relativeTo: self.altar)
 			// modelEntity.setPosition(SIMD3<Float>(0, 0.97, 0), relativeTo: self.box)
 		} else {
 			print("DEBUG: Unable to add modelEntity to scene in Render")

@@ -13,7 +13,7 @@ class CustomARView: ARView {
 	
 	// let box = try! Experience.loadBox()
 	
-	let altar = try! ModelEntity.loadModel(named: "Altar_no_chalice")
+	let altar = try! ModelEntity.loadModel(named: "CompleteAltar")
 	
 	required init(frame frameRect: CGRect) {
 		super.init(frame: frameRect)
