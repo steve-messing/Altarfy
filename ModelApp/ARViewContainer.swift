@@ -143,6 +143,7 @@ extension CustomARView {
 		
 	func addAnchorEntityToScene(anchor: ARAnchor) {
 				
+		
 		print("in addAnchorEntityToScene func")
 		print("adding \(anchor.name ?? "anchor name") to scene as ARAnchor")
 
@@ -154,14 +155,14 @@ extension CustomARView {
 
 		if let modelEntity = try? ModelEntity.loadModel(named: anchor.name ?? "Stone_06") {
 			
-			modelEntity.scale = SIMD3<Float>(0.001, 0.001, 0.001)
+			modelEntity.transform = Transform(matrix: anchor.transform)
 			modelEntity.generateCollisionShapes(recursive: true)
 			self.installGestures(for: modelEntity)
 
 			let anchorEntity = AnchorEntity(anchor: anchor)
-			self.box.addChild(anchorEntity)
 			anchorEntity.addChild(modelEntity)
-			anchorEntity.setPosition(SIMD3<Float>(0, 0.97, -0.3), relativeTo: self.box)
+			self.box.addChild(modelEntity)
+			modelEntity.setPosition(SIMD3<Float>(0, 0.97, -0.3), relativeTo: self.box)
 			// modelEntity.setPosition(SIMD3<Float>(0, 0.97, 0), relativeTo: self.box)
 		} else {
 			print("DEBUG: Unable to add modelEntity to scene in Render")
