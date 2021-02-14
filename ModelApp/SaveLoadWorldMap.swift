@@ -77,7 +77,7 @@ extension ARViewContainer {
 		print("printing anchors from loading")
 		print(worldMap.anchors)
 		config.initialWorldMap = worldMap
-		arView.session.run(config, options: [.resetTracking, .removeExistingAnchors])
+		arView.session.run(config, options: [.resetTracking])
 	}
 }
 

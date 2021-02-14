@@ -64,6 +64,19 @@ struct ARViewContainer: UIViewRepresentable {
 		
 	func makeUIView(context: Context) -> ARView {
 				
+		// add altar to scene with ARAnchor for stability
+		
+		let altarARAnchor = ARPlaneAnchor(name: "AltarARAnchor", transform: simd_float4x4(
+										[1.0, 0.0, 0.0, 0.0],
+										[0.0, 1.0, 0.0, 0.0],
+										[0.0, 0.0, 1.0, 0.0],
+										[0.0, 0.0, 0.0, 1.0]))
+		
+		let altarAnchorEntity = AnchorEntity(anchor: altarARAnchor)
+		altarAnchorEntity.addChild(arView.altar)
+		arView.scene.anchors.append(altarAnchorEntity)
+		arView.session.add(anchor: altarARAnchor)
+		
 		print("in makeUIView")
 				
 		arView.addCoaching()
@@ -80,7 +93,7 @@ struct ARViewContainer: UIViewRepresentable {
 		arView.enableObjectRemoval()
 		arView.playAnimation()
 		 
-		arView.scene.anchors.append(arView.box)
+		// arView.scene.anchors.append(arView.box)
 		arView.session.delegate = arView
 		arView.session.run(config)
 		
@@ -140,9 +153,8 @@ struct ARViewContainer: UIViewRepresentable {
 
 
 extension CustomARView {
-		
+	
 	func addAnchorEntityToScene(anchor: ARAnchor) {
-				
 		
 		print("in addAnchorEntityToScene func")
 		print("adding \(anchor.name ?? "anchor name") to scene as ARAnchor")
@@ -160,10 +172,10 @@ extension CustomARView {
 			modelEntity.generateCollisionShapes(recursive: true)
 			self.installGestures(for: modelEntity)
 
-			let anchorEntity = AnchorEntity(anchor: anchor)
-			anchorEntity.addChild(modelEntity)
-			self.box.addChild(anchorEntity)
-			anchorEntity.setPosition(SIMD3<Float>(0, 0.97, -0.3), relativeTo: self.box)
+//			let anchorEntity = AnchorEntity(anchor: anchor)
+//			anchorEntity.addChild(modelEntity)
+			self.altar.addChild(modelEntity)
+			modelEntity.setPosition(SIMD3<Float>(0, 0.5, 0), relativeTo: self.altar)
 			// modelEntity.setPosition(SIMD3<Float>(0, 0.97, 0), relativeTo: self.box)
 		} else {
 			print("DEBUG: Unable to add modelEntity to scene in Render")

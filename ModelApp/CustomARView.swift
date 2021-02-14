@@ -11,7 +11,9 @@ import ARKit
 class CustomARView: ARView {
     // Referring to @EnvironmentObject
 	
-	let box = try! Experience.loadBox()
+	// let box = try! Experience.loadBox()
+	
+	let altar = try! ModelEntity.loadModel(named: "Altar_no_chalice")
 	
 	required init(frame frameRect: CGRect) {
 		super.init(frame: frameRect)
