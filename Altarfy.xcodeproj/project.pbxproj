@@ -24,6 +24,8 @@
 		51D2A60A25CD0879002A3E93 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D2A60925CD0879002A3E93 /* Navigation.swift */; };
 		51D2A60F25CD0896002A3E93 /* NavList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D2A60C25CD0895002A3E93 /* NavList.swift */; };
 		51D5DEAE25D8FFEE00BF144F /* CompleteAltar.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 51D5DEAD25D8FFEE00BF144F /* CompleteAltar.usdz */; };
+		51D5DEB425D929EB00BF144F /* Float4x4+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D5DEB325D929EB00BF144F /* Float4x4+Extensions.swift */; };
+		51D5DEB825D92BD100BF144F /* Human_Clay_Duck.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 51D5DEB725D92BD100BF144F /* Human_Clay_Duck.usdz */; };
 		51D6EA8225D0D0AE000D747E /* Food_apple.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 51D6EA6A25D0D0AD000D747E /* Food_apple.usdz */; };
 		51D6EA8325D0D0AE000D747E /* Human_Vase.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 51D6EA6B25D0D0AD000D747E /* Human_Vase.usdz */; };
 		51D6EA8525D0D0AE000D747E /* Chocolate.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 51D6EA6D25D0D0AD000D747E /* Chocolate.usdz */; };
@@ -35,7 +37,6 @@
 		51D6EA8B25D0D0AE000D747E /* Mineral_Fluorite.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 51D6EA7325D0D0AE000D747E /* Mineral_Fluorite.usdz */; };
 		51D6EA8C25D0D0AE000D747E /* Nature_Rose.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 51D6EA7425D0D0AE000D747E /* Nature_Rose.usdz */; };
 		51D6EA8D25D0D0AE000D747E /* Human_Candle_light.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 51D6EA7525D0D0AE000D747E /* Human_Candle_light.usdz */; };
-		51D6EA8E25D0D0AE000D747E /* Human_Clay_Duck.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 51D6EA7625D0D0AE000D747E /* Human_Clay_Duck.usdz */; };
 		51D6EA9125D0D0AE000D747E /* Mineral_18.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 51D6EA7925D0D0AE000D747E /* Mineral_18.usdz */; };
 		51D6EA9225D0D0AE000D747E /* Human_goblet1.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 51D6EA7A25D0D0AE000D747E /* Human_goblet1.usdz */; };
 		51D6EA9425D0D0AE000D747E /* Nature_Lotus_Flower.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 51D6EA7C25D0D0AE000D747E /* Nature_Lotus_Flower.usdz */; };
@@ -66,6 +67,8 @@
 		51D2A60925CD0879002A3E93 /* Navigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		51D2A60C25CD0895002A3E93 /* NavList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavList.swift; sourceTree = "<group>"; };
 		51D5DEAD25D8FFEE00BF144F /* CompleteAltar.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = CompleteAltar.usdz; sourceTree = "<group>"; };
+		51D5DEB325D929EB00BF144F /* Float4x4+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Float4x4+Extensions.swift"; sourceTree = "<group>"; };
+		51D5DEB725D92BD100BF144F /* Human_Clay_Duck.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Human_Clay_Duck.usdz; sourceTree = "<group>"; };
 		51D6EA6A25D0D0AD000D747E /* Food_apple.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Food_apple.usdz; sourceTree = "<group>"; };
 		51D6EA6B25D0D0AD000D747E /* Human_Vase.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Human_Vase.usdz; sourceTree = "<group>"; };
 		51D6EA6D25D0D0AD000D747E /* Chocolate.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Chocolate.usdz; sourceTree = "<group>"; };
@@ -77,7 +80,6 @@
 		51D6EA7325D0D0AE000D747E /* Mineral_Fluorite.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Mineral_Fluorite.usdz; sourceTree = "<group>"; };
 		51D6EA7425D0D0AE000D747E /* Nature_Rose.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Nature_Rose.usdz; sourceTree = "<group>"; };
 		51D6EA7525D0D0AE000D747E /* Human_Candle_light.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Human_Candle_light.usdz; sourceTree = "<group>"; };
-		51D6EA7625D0D0AE000D747E /* Human_Clay_Duck.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Human_Clay_Duck.usdz; sourceTree = "<group>"; };
 		51D6EA7925D0D0AE000D747E /* Mineral_18.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Mineral_18.usdz; sourceTree = "<group>"; };
 		51D6EA7A25D0D0AE000D747E /* Human_goblet1.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Human_goblet1.usdz; sourceTree = "<group>"; };
 		51D6EA7C25D0D0AE000D747E /* Nature_Lotus_Flower.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Nature_Lotus_Flower.usdz; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 		5128BC4C25C0D43B00372271 /* ModelApp */ = {
 			isa = PBXGroup;
 			children = (
+				51D5DEB325D929EB00BF144F /* Float4x4+Extensions.swift */,
 				51A2A0F725D4AC90008D7DC3 /* CustomARView.swift */,
 				51A2A0FE25D50AF9008D7DC3 /* Launch Screen.storyboard */,
 				51C48BB425CB8A0E00656D1F /* Model */,
@@ -146,6 +149,7 @@
 		5128BC5F25C0D53200372271 /* 3DModels */ = {
 			isa = PBXGroup;
 			children = (
+				51D5DEB725D92BD100BF144F /* Human_Clay_Duck.usdz */,
 				51D5DEAD25D8FFEE00BF144F /* CompleteAltar.usdz */,
 				51A2A10A25D7ABEC008D7DC3 /* Food_Horned_Melon.usdz */,
 				51A2A10825D7ABEC008D7DC3 /* Food_romanesco_broccoli.usdz */,
@@ -155,7 +159,6 @@
 				51D6EA7125D0D0AD000D747E /* Food_orange.usdz */,
 				51D6EA7025D0D0AD000D747E /* Human_Book.usdz */,
 				51D6EA7525D0D0AE000D747E /* Human_Candle_light.usdz */,
-				51D6EA7625D0D0AE000D747E /* Human_Clay_Duck.usdz */,
 				51D6EA7A25D0D0AE000D747E /* Human_goblet1.usdz */,
 				51D6EA8125D0D0AE000D747E /* Human_goblet2.usdz */,
 				51D6EA6F25D0D0AD000D747E /* Human_Pintadeira_de_Pão.usdz */,
@@ -265,6 +268,7 @@
 				51D6EA8A25D0D0AE000D747E /* Human_Temple_miniature.usdz in Resources */,
 				51D6EA9825D0D0AE000D747E /* Stone_03.usdz in Resources */,
 				51D6EA9725D0D0AE000D747E /* Stone_Calcite_blue.usdz in Resources */,
+				51D5DEB825D92BD100BF144F /* Human_Clay_Duck.usdz in Resources */,
 				51D6EA8725D0D0AE000D747E /* Human_Pintadeira_de_Pão.usdz in Resources */,
 				51D6EA9525D0D0AE000D747E /* Stone_06.usdz in Resources */,
 				51D6EA9425D0D0AE000D747E /* Nature_Lotus_Flower.usdz in Resources */,
@@ -280,7 +284,6 @@
 				51D6EA9225D0D0AE000D747E /* Human_goblet1.usdz in Resources */,
 				51D6EA8325D0D0AE000D747E /* Human_Vase.usdz in Resources */,
 				51D6EA8C25D0D0AE000D747E /* Nature_Rose.usdz in Resources */,
-				51D6EA8E25D0D0AE000D747E /* Human_Clay_Duck.usdz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5128BC5025C0D43B00372271 /* ContentView.swift in Sources */,
+				51D5DEB425D929EB00BF144F /* Float4x4+Extensions.swift in Sources */,
 				51D2A60A25CD0879002A3E93 /* Navigation.swift in Sources */,
 				5128BC4E25C0D43B00372271 /* AppDelegate.swift in Sources */,
 				51CE16E025C7B70B006D0E3C /* ModelPickerView.swift in Sources */,

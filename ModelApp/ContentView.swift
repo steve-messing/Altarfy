@@ -36,6 +36,12 @@ struct ContentView : View {
 			let model = Model(modelName: modelName)
 			availableModels.append(model)
 		}
+		
+		if let index = availableModels.firstIndex(of: Model(modelName: "CompleteAltar")) {
+			availableModels.remove(at: index)
+		}
+
+				
 		return availableModels
 	}()
 	

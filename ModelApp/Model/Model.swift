@@ -13,7 +13,7 @@ import Combine
 import QuickLookThumbnailing
 
 
-class Model {
+struct Model: Equatable {
 	
 	var modelName: String
 	var image: UIImage

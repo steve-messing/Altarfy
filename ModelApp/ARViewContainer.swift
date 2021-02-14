@@ -12,20 +12,6 @@ import ARKit
 import CoreData
 
 
-class DirectionalLighting: Entity, HasDirectionalLight {
-	
-	required init() {
-		super.init()
-		
-		self.light = DirectionalLightComponent(color: .white,
-											   intensity: 5000,
-											   isRealWorldProxy: true)
-		
-		self.shadow = DirectionalLightComponent.Shadow(maximumDistance: 5,
-													   depthBias: 2.5)
-	}
-}
-
 class SpotLighting: Entity, HasSpotLight {
 	
 	required init() {
@@ -56,20 +42,14 @@ struct ARViewContainer: UIViewRepresentable {
 	let arView = CustomARView(frame: .zero)
 	let config = ARWorldTrackingConfiguration()
 	
-	let directionalLight = DirectionalLighting()
 	let spotLight = SpotLighting()
 	let lightAnchor = AnchorEntity()
-	let parentAnchor = AnchorEntity()
 		
 	func makeUIView(context: Context) -> ARView {
 				
 		// add altar to scene with ARAnchor for stability
 		
-		let altarARAnchor = ARAnchor(name: "AltarARAnchor", transform: simd_float4x4(
-										[1.0, 0.0, 0.0, 0.0],
-										[0.0, 1.0, 0.0, 0.0],
-										[0.0, 0.0, 1.0, 0.0],
-										[0.0, 0.0, 0.0, 1.0]))
+		let altarARAnchor = ARAnchor(name: "AltarARAnchor", transform: simd_float4x4(diagonal: [1.0, 1.0, 1.0, 1.0]))
 		
 		let altarAnchorEntity = AnchorEntity(anchor: altarARAnchor)
 		altarAnchorEntity.addChild(arView.altar)
@@ -114,11 +94,8 @@ struct ARViewContainer: UIViewRepresentable {
 		
 		if let model = self.selectedModel {
 			
-			let virtualObjectAnchor = ARAnchor(name: model.modelName, transform: simd_float4x4(
-							[1.0, 0.0, 0.0, 0.0],
-							[0.0, 1.0, 0.0, 0.0],
-							[0.0, 0.0, 1.0, 0.0],
-							[0.0, 0.0, 0.0, 1.0]))
+			let virtualObjectAnchor = ARAnchor(name: model.modelName, transform: simd_float4x4(diagonal: [1.0, 1.0, 1.0, 1.0]))
+		
 
 			// Add ARAnchor into ARView.session, which can be persisted in WorldMap
 			arView.session.add(anchor: virtualObjectAnchor)
@@ -155,9 +132,9 @@ struct ARViewContainer: UIViewRepresentable {
 
 extension CustomARView {
 	
+//	func addAnchorEntityToScene(anchor: ARAnchor, transform: SIMD3<Float>) {
 	func addAnchorEntityToScene(anchor: ARAnchor) {
-		
-		print("in addAnchorEntityToScene func")
+
 		print("adding \(anchor.name ?? "anchor name") to scene as ARAnchor")
 
 		guard anchor.name != nil else {
@@ -168,16 +145,13 @@ extension CustomARView {
 
 		if let modelEntity = try? ModelEntity.loadModel(named: anchor.name ?? "Stone_06") {
 			
-			// modelEntity.transform = Transform(matrix: anchor.transform)
+//			modelEntity.setPosition(transform, relativeTo: altar)
 			modelEntity.scale = SIMD3(0.001, 0.001, 0.001)
 			modelEntity.generateCollisionShapes(recursive: true)
 			self.installGestures(for: modelEntity)
 
-//			let anchorEntity = AnchorEntity(anchor: anchor)
-//			anchorEntity.addChild(modelEntity)
 			self.altar.addChild(modelEntity)
 			modelEntity.setPosition(SIMD3<Float>(0, 0.97, -0.3), relativeTo: self.altar)
-			// modelEntity.setPosition(SIMD3<Float>(0, 0.97, 0), relativeTo: self.box)
 		} else {
 			print("DEBUG: Unable to add modelEntity to scene in Render")
 		}
@@ -227,6 +201,17 @@ extension CustomARView: ARSessionDelegate {
 			addAnchorEntityToScene(anchor: anchor)
 		}
 	}
+	
+//	public func session(_ session: ARSession, didUpdate anchors: [ARAnchor])
+//	{
+//		for anchor in anchors
+//		{
+//			guard let anchor = anchor as? ARAnchor else { continue }
+//			let transform = anchor.transform
+//			updateTransform(anchor: anchor, tranform: transform)
+//		}
+//	}
+	
 }
 
 
