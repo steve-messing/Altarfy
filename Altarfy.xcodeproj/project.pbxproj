@@ -23,6 +23,7 @@
 		51CE16E025C7B70B006D0E3C /* ModelPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CE16DF25C7B70B006D0E3C /* ModelPickerView.swift */; };
 		51D2A60A25CD0879002A3E93 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D2A60925CD0879002A3E93 /* Navigation.swift */; };
 		51D2A60F25CD0896002A3E93 /* NavList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D2A60C25CD0895002A3E93 /* NavList.swift */; };
+		51D5DEAE25D8FFEE00BF144F /* CompleteAltar.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 51D5DEAD25D8FFEE00BF144F /* CompleteAltar.usdz */; };
 		51D6EA8225D0D0AE000D747E /* Food_apple.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 51D6EA6A25D0D0AD000D747E /* Food_apple.usdz */; };
 		51D6EA8325D0D0AE000D747E /* Human_Vase.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 51D6EA6B25D0D0AD000D747E /* Human_Vase.usdz */; };
 		51D6EA8525D0D0AE000D747E /* Chocolate.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 51D6EA6D25D0D0AD000D747E /* Chocolate.usdz */; };
@@ -64,6 +65,7 @@
 		51CE16DF25C7B70B006D0E3C /* ModelPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelPickerView.swift; sourceTree = "<group>"; };
 		51D2A60925CD0879002A3E93 /* Navigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		51D2A60C25CD0895002A3E93 /* NavList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavList.swift; sourceTree = "<group>"; };
+		51D5DEAD25D8FFEE00BF144F /* CompleteAltar.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = CompleteAltar.usdz; sourceTree = "<group>"; };
 		51D6EA6A25D0D0AD000D747E /* Food_apple.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Food_apple.usdz; sourceTree = "<group>"; };
 		51D6EA6B25D0D0AD000D747E /* Human_Vase.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Human_Vase.usdz; sourceTree = "<group>"; };
 		51D6EA6D25D0D0AD000D747E /* Chocolate.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Chocolate.usdz; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 		5128BC5F25C0D53200372271 /* 3DModels */ = {
 			isa = PBXGroup;
 			children = (
+				51D5DEAD25D8FFEE00BF144F /* CompleteAltar.usdz */,
 				51A2A10A25D7ABEC008D7DC3 /* Food_Horned_Melon.usdz */,
 				51A2A10825D7ABEC008D7DC3 /* Food_romanesco_broccoli.usdz */,
 				51A2A10925D7ABEC008D7DC3 /* Human_Bell.usdz */,
@@ -269,6 +272,7 @@
 				51D6EA8825D0D0AE000D747E /* Human_Book.usdz in Resources */,
 				51D6EA9925D0D0AE000D747E /* Human_goblet2.usdz in Resources */,
 				5128BC5725C0D43D00372271 /* Preview Assets.xcassets in Resources */,
+				51D5DEAE25D8FFEE00BF144F /* CompleteAltar.usdz in Resources */,
 				51D6EA8525D0D0AE000D747E /* Chocolate.usdz in Resources */,
 				51D6EA9625D0D0AE000D747E /* Human_The_Thinker_by_Auguste_Rodin.usdz in Resources */,
 				51A2A0FF25D50AF9008D7DC3 /* Launch Screen.storyboard in Resources */,
