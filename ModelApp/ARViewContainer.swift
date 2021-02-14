@@ -32,22 +32,21 @@ class SpotLighting: Entity, HasSpotLight {
 		super.init()
 		
 		self.light = SpotLightComponent(color: .white,
-											   intensity: 10000,
+											   intensity: 7000,
 											   innerAngleInDegrees: 70,
 											   outerAngleInDegrees: 120,
 											   attenuationRadius: 9.0)
 		
 		self.shadow = SpotLightComponent.Shadow()
-		self.position.y = 1.3
+		self.position.y = 1.5
+		self.position.z = 0.5
 	}
 }
 
 
 
 struct ARViewContainer: UIViewRepresentable {
-	
-	// typealias UIViewType = ARView
-	
+		
 	let url: URL?
 	
 	@Binding var selectedModel: Model?
@@ -74,15 +73,17 @@ struct ARViewContainer: UIViewRepresentable {
 		
 		let altarAnchorEntity = AnchorEntity(anchor: altarARAnchor)
 		altarAnchorEntity.addChild(arView.altar)
+		altarAnchorEntity.addChild(lightAnchor)
+		lightAnchor.addChild(spotLight)
 		arView.scene.anchors.append(altarAnchorEntity)
 		arView.session.add(anchor: altarARAnchor)
 		
 		print("in makeUIView")
 				
-		arView.addCoaching()
+//		arView.addCoaching()
+//
+//		arView.scene.anchors.append(lightAnchor)
 
-		arView.scene.anchors.append(lightAnchor)
-		lightAnchor.addChild(spotLight)
 				
 		config.planeDetection = [.horizontal]
 		config.environmentTexturing = .automatic
@@ -175,7 +176,7 @@ extension CustomARView {
 //			let anchorEntity = AnchorEntity(anchor: anchor)
 //			anchorEntity.addChild(modelEntity)
 			self.altar.addChild(modelEntity)
-			modelEntity.setPosition(SIMD3<Float>(0, 0.97, 0), relativeTo: self.altar)
+			modelEntity.setPosition(SIMD3<Float>(0, 0.97, -0.3), relativeTo: self.altar)
 			// modelEntity.setPosition(SIMD3<Float>(0, 0.97, 0), relativeTo: self.box)
 		} else {
 			print("DEBUG: Unable to add modelEntity to scene in Render")
