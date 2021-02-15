@@ -30,6 +30,8 @@ struct NavList: View {
 	
 	func delete(at offsets: IndexSet) {
 		files.remove(atOffsets: offsets)
+//		let fileManager = FileManager.default
+//		try fileManager.removeItem(atPath: "\(folderPath)/\(path)")
 	}
 	
 	func updateList() {

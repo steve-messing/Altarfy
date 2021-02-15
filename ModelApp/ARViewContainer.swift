@@ -122,7 +122,7 @@ struct ARViewContainer: UIViewRepresentable {
 					 in: .userDomainMask,
 					 appropriateFor: nil,
 					 create: true)
-				.appendingPathComponent("map.Altar-\(filename)") // pass in filename as variable
+				.appendingPathComponent("map.\(filename)") // pass in filename as variable
 		} catch {
 			fatalError("Can't get file save URL: \(error.localizedDescription)")
 		}

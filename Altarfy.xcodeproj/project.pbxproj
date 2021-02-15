@@ -167,12 +167,12 @@
 				51D6EA6B25D0D0AD000D747E /* Human_Vase.usdz */,
 				51D6EA7925D0D0AE000D747E /* Mineral_18.usdz */,
 				51D6EA7325D0D0AE000D747E /* Mineral_Fluorite.usdz */,
+				51D6EA7F25D0D0AE000D747E /* Stone_Calcite_blue.usdz */,
 				51D6EA7C25D0D0AE000D747E /* Nature_Lotus_Flower.usdz */,
 				51D6EA7425D0D0AE000D747E /* Nature_Rose.usdz */,
 				51D6EA6E25D0D0AD000D747E /* Risla.usdz */,
 				51D6EA8025D0D0AE000D747E /* Stone_03.usdz */,
 				51D6EA7D25D0D0AE000D747E /* Stone_06.usdz */,
-				51D6EA7F25D0D0AE000D747E /* Stone_Calcite_blue.usdz */,
 			);
 			path = 3DModels;
 			sourceTree = "<group>";
