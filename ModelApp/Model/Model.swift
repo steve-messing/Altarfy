@@ -25,7 +25,6 @@ struct Model: Equatable {
 	init(modelName: String, scaleCompensation: Float = 1.0) {
 		
 		self.modelName = modelName
-		let filename = modelName + ".usdz"
 		self.scaleCompensation = scaleCompensation	
 		self.image = UIImage(named: modelName) ?? UIImage(systemName: "photo")!
 	}

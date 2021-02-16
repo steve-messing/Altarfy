@@ -18,7 +18,7 @@ struct NavList: View {
 					HStack {
 						Image(systemName: "square.and.pencil")
 							.resizable()
-							.padding(.all, 8.0)
+							.padding(.all, 11.0)
 							.frame(width: 50, height: 50)
 						Text("\(file.pathExtension)")
 						Spacer()
@@ -30,8 +30,6 @@ struct NavList: View {
 	
 	func delete(at offsets: IndexSet) {
 		files.remove(atOffsets: offsets)
-//		let fileManager = FileManager.default
-//		try fileManager.removeItem(atPath: "\(folderPath)/\(path)")
 	}
 	
 	func updateList() {

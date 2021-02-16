@@ -19,11 +19,9 @@ extension CustomARView: ARSessionDelegate {
 	}
 	
 //	public func session(_ session: ARSession, didUpdate anchors: [ARAnchor]) {
-//		for anchor in anchors
-//		{
-//			guard let anchor = anchor as? ARAnchor else { continue }
+//		for anchor in anchors {
 //			let transform = anchor.transform
-//			updateTransform(anchor: anchor, tranform: transform)
+//			addAnchorEntityToScene(anchor: anchor)
 //		}
 //	}
 }
