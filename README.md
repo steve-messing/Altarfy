@@ -5,7 +5,19 @@ Sophie E. Messing - Capstone Project - Ada C14
 
 Altarfy is an Augmented Reality Altar Building app for iOS. developed in Swift using RealityKit, ARKit and SwiftUI. Users can invoke an Altar in an AR space using their phone's rear camera, and add 3D models to the altars. 
 
-Use touch gestures to scale, move and rotate placed 3D models. Long press on candle to trigger candle flame animation.
+Start with the phone near the ground, or wherever you'd like to build the Altar, rear camera facing down. Slowly pull the device up to reveal the Altar.
+
+Add 3D objects to the Altar using the slider at the bottom, and use touch gestures to scale, move and rotate placed objects. Long press on candle to trigger candle flame animation.
+
+Walk around and witness your creation in the round.
+
+#### Save and Load
+
+Save generates a unique filename with current date and time, and saves it to a list of files. 
+
+To properly load an altar, you must return to the place where it was built. Once there, AR World Detection will place the altar in world space with all objects that were placed on it in a previous saved session.
+
+
 
 ## Helpful Resources:
 
