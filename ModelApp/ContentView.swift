@@ -12,7 +12,6 @@ import ARKit
 
 struct ContentView : View {
 	
-	
 	public var url: URL?
 
 	@State var showsAlert = false

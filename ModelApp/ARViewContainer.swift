@@ -9,7 +9,6 @@ import SwiftUI
 import UIKit
 import RealityKit
 import ARKit
-import CoreData
 
 
 class SpotLighting: Entity, HasSpotLight {
@@ -126,109 +125,5 @@ struct ARViewContainer: UIViewRepresentable {
 		} catch {
 			fatalError("Can't get file save URL: \(error.localizedDescription)")
 		}
-	}
-}
-
-
-extension CustomARView {
-	
-//	func addAnchorEntityToScene(anchor: ARAnchor, transform: SIMD3<Float>) {
-	func addAnchorEntityToScene(anchor: ARAnchor) {
-
-		print("adding \(anchor.name ?? "anchor name") to scene as ARAnchor")
-
-		guard anchor.name != nil else {
-			return
-		}
-
-		// Add modelEntity and anchorEntity into the scene for rendering
-
-		if let modelEntity = try? ModelEntity.loadModel(named: anchor.name ?? "Stone_06") {
-			
-//			modelEntity.setPosition(transform, relativeTo: altar)
-			modelEntity.scale = SIMD3(0.001, 0.001, 0.001)
-			modelEntity.generateCollisionShapes(recursive: true)
-			self.installGestures(for: modelEntity)
-
-			self.altar.addChild(modelEntity)
-			modelEntity.setPosition(SIMD3<Float>(0, 0.97, -0.3), relativeTo: self.altar)
-		} else {
-			print("DEBUG: Unable to add modelEntity to scene in Render")
-		}
-	}
-
-	
-	// double tap to delete
-	func enableObjectRemoval() {
-		let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(recognizer:)))
-		
-		tapGestureRecognizer.numberOfTapsRequired = 2
-		
-		self.addGestureRecognizer(tapGestureRecognizer)
-	}
-	
-	@objc func handleTap(recognizer: UITapGestureRecognizer) {
-		let location = recognizer.location(in: self)
-		
-		if let entity = self.entity(at: location) {
-			entity.removeFromParent()
-		}
-	}
-	
-	// long press for animations
-	
-	func playAnimation() {
-		let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(recognizer:)))
-		
-		self.addGestureRecognizer(longPressGestureRecognizer)
-	}
-	
-	@objc func handleLongPress(recognizer: UILongPressGestureRecognizer) {
-		let location = recognizer.location(in: self)
-		
-		if let entity = self.entity(at: location) {
-			entity.availableAnimations.forEach { entity.playAnimation($0.repeat()) }
-		}
-	}
-}
-
-extension CustomARView: ARSessionDelegate {
-
-	public func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
-		
-		print("---starting the session---")
-		for anchor in anchors {
-			addAnchorEntityToScene(anchor: anchor)
-		}
-	}
-	
-//	public func session(_ session: ARSession, didUpdate anchors: [ARAnchor])
-//	{
-//		for anchor in anchors
-//		{
-//			guard let anchor = anchor as? ARAnchor else { continue }
-//			let transform = anchor.transform
-//			updateTransform(anchor: anchor, tranform: transform)
-//		}
-//	}
-	
-}
-
-
-extension CustomARView: ARCoachingOverlayViewDelegate {
-	func addCoaching() {
-		// Create a ARCoachingOverlayView object
-		let coachingOverlay = ARCoachingOverlayView()
-		// Make sure it rescales if the device orientation changes
-		coachingOverlay.autoresizingMask = [
-			.flexibleWidth, .flexibleHeight
-		]
-		self.addSubview(coachingOverlay)
-		// Set the Augmented Reality goal
-		coachingOverlay.goal = .horizontalPlane
-		// Set the ARSession
-		coachingOverlay.session = self.session
-		// Set the delegate for any callbacks
-		coachingOverlay.delegate = self
 	}
 }
