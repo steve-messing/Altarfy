@@ -12,7 +12,6 @@ extension CustomARView: ARSessionDelegate {
 	
 	public func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
 		
-		print("---starting the session---")
 		for anchor in anchors {
 			addAnchorEntityToScene(anchor: anchor)
 		}

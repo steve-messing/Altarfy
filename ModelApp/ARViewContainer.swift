@@ -56,12 +56,6 @@ struct ARViewContainer: UIViewRepresentable {
 		lightAnchor.addChild(spotLight)
 		arView.scene.anchors.append(altarAnchorEntity)
 		arView.session.add(anchor: altarARAnchor)
-		
-		print("in makeUIView")
-				
-//		arView.addCoaching()
-//
-//		arView.scene.anchors.append(lightAnchor)
 
 				
 		config.planeDetection = [.horizontal]
@@ -88,9 +82,7 @@ struct ARViewContainer: UIViewRepresentable {
 	}
 	
 	func updateUIView(_ uiView: ARView, context: Context) {
-		
-		print("in updateUIView")
-		
+				
 		if let model = self.selectedModel {
 			
 			let virtualObjectAnchor = ARAnchor(name: model.modelName, transform: simd_float4x4(diagonal: [1.0, 1.0, 1.0, 1.0]))
