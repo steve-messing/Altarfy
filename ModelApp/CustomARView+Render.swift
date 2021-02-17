@@ -12,9 +12,7 @@ extension CustomARView {
 	
 	public func addAnchorEntityToScene(anchor: ARAnchor) {
 		
-		print("adding \(anchor.name ?? "anchor name") to scene as ARAnchor")
-		
-		print(anchor.transform)
+//		print("adding \(anchor.name ?? "anchor name") to scene as ARAnchor")
 		
 		guard anchor.name != nil else {
 			return
@@ -30,7 +28,6 @@ extension CustomARView {
 			
 			self.altar.addChild(modelEntity)
 			modelEntity.setPosition(SIMD3<Float>(0, 0.97, -0.3), relativeTo: self.altar)
-			print(modelEntity.transform)
 		} else {
 			print("DEBUG: Unable to add modelEntity to scene in Render")
 		}
