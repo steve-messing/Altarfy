@@ -1,5 +1,6 @@
 # Altarfy
-Sophie E. Messing - Capstone Project - Ada C14
+#### An iOS app By Sophie E. Messing 
+Ada Developers Academy Cohort 14 Capstone Project
 
 ## Overview
 
