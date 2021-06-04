@@ -1,6 +1,6 @@
 # Altarfy
 #### An iOS app By Sophie E. Messing 
-Ada Developers Academy Cohort 14 Capstone Project
+Ada Developers Academy, Cohort 14
 
 ## Overview
 
