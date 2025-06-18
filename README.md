@@ -2,7 +2,7 @@
 #### An iOS app By Steve E. Messing 
 Ada Developers Academy, Cohort 14
 
-<iframe width="1254" height="641" src="https://www.youtube.com/embed/FzYQIi99va0" title="Altarfy: Capstone Presentation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+https://www.youtube.com/embed/FzYQIi99va0
 
 ## Overview
 
