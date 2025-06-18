@@ -2,7 +2,7 @@
 #### An iOS app By Steve E. Messing 
 Ada Developers Academy, Cohort 14
 
-https://www.youtube.com/watch?v=FzYQIi99va0&ab_channel=SteveMessing
+<video src="https://www.youtube.com/watch?v=FzYQIi99va0&ab_channel=SteveMessing" width="320" height="240" controls></video>
 
 ## Overview
 
